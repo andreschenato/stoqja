@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/login/desktop_login.dart';
 import 'package:stoque_ja/login/mobile_login.dart';
-import 'package:stoque_ja/login/responsivo.dart';
+import '../../responsive/responsivo.dart';
 
 class TelaLogin extends StatefulWidget {
   const TelaLogin({super.key});
