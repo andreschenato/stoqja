@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stoque_ja/login/login_widget.dart';
 
 class DesktopLogin extends StatefulWidget {
   const DesktopLogin({super.key});
@@ -19,24 +20,15 @@ class _DesktopLoginState extends State<DesktopLogin> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                  height: MediaQuery.of(context).size.height / 2,
-                  width: MediaQuery.of(context).size.width / 1.5,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        constraints: const BoxConstraints(
-                          maxHeight: 500,
-                          maxWidth: 1000,
-                          minHeight: 100,
-                          minWidth: 200,
-                        ),
-                        width: MediaQuery.of(context).size.width/2,
-                        height: MediaQuery.of(context).size.height/2,
-                        color: Colors.amber,
-                      )
-                    ],
-                  )),
+                height: MediaQuery.of(context).size.height / 2,
+                width: MediaQuery.of(context).size.width / 1.5,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                     LoginWidget(),
+                  ],
+                ),
+              ),
             ],
           ),
           Expanded(
