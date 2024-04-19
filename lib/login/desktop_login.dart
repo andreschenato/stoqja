@@ -22,7 +22,7 @@ class _DesktopLoginState extends State<DesktopLogin> {
               SizedBox(
                 height: MediaQuery.of(context).size.height / 2,
                 width: MediaQuery.of(context).size.width / 1.5,
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                      LoginWidget(),

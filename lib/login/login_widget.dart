@@ -22,10 +22,10 @@ class _LoginWidgetState extends State<LoginWidget> {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints(
-        maxHeight: 500,
-        maxWidth: 1000,
+        maxHeight: 300,
+        maxWidth: 600,
         minHeight: 100,
-        minWidth: 200,
+        minWidth: 300,
       ),
       width: MediaQuery.of(context).size.width / 2,
       height: MediaQuery.of(context).size.height / 2,
@@ -55,7 +55,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               border: OutlineInputBorder(),
             ),
           ),
-          const SizedBox(height: 10.0),
+          const SizedBox(height: 25.0),
           Container(
             constraints: const BoxConstraints(
               maxHeight: 70,
@@ -76,7 +76,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 bool? isValid;
                 isValid = await validaLogin(usuario.toString(), senha.text);
                 if (isValid) {
-                  Navigator.pushNamed(context, '/Menu');
+                  Navigator.pushNamed(context, '/Menu', arguments: usuario.toString());
                 } else {
                   Center(child: Text('Usuário ou senha inválidos'));
                 }
