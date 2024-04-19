@@ -5,14 +5,14 @@ import 'dart:developer' as developer;
 
 void main() async {
   // Teste de conexão com o banco
-  var conexao = await MySqlDBConfiguration().connection;
-  await conexao.connect();
-  var val = await conexao.execute("SELECT * FROM teste");
-  int count = val.numOfRows;
-  developer.log('Numero de colunas: $count');
-  for (var row in val.rows) {
-    developer.log(row.assoc().toString());
-  }
+  // var conexao = await MySqlDBConfiguration().connection;
+  // await conexao.connect();
+  // var val = await conexao.execute("SELECT * FROM teste");
+  // int count = val.numOfRows;
+  // developer.log('Numero de colunas: $count');
+  // for (var row in val.rows) {
+  //   developer.log(row.assoc().toString());
+  // }
   /*
     A saída esperada é a seguinte:
     [log] Numero de colunas: 3
