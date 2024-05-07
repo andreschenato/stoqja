@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DrawerComponent extends StatefulWidget {
-  const DrawerComponent({super.key});
-
-  @override
-  State<DrawerComponent> createState() => _DrawerComponentState();
-}
-
-class _DrawerComponentState extends State<DrawerComponent> {
-  int _selectedIndex = 0;
+class DrawerComponent extends StatelessWidget {
+  final String tela;
+  const DrawerComponent({super.key, required this.tela});
   @override
   Widget build(BuildContext context) {
+    final String _selectedIndex = tela;
     final String usuario = ModalRoute.of(context)?.settings.arguments as String;
     return Drawer(
       child: ListView(
@@ -34,7 +29,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 Text("Menu"),
               ],
             ),
-            selected: _selectedIndex == 0,
+            selected: _selectedIndex == 'Menu',
             onTap: () {
               Navigator.pushNamed(context, '/Menu', arguments: usuario);
             },
@@ -49,8 +44,10 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 Text("Produtos"),
               ],
             ),
-            selected: _selectedIndex == 1,
-            onTap: () {},
+            selected: _selectedIndex == 'Produtos',
+            onTap: () {
+              Navigator.pushNamed(context, '/Produtos', arguments: usuario);
+            },
           ),
           ListTile(
             title: const Row(
@@ -62,8 +59,10 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 Text("Funcionários"),
               ],
             ),
-            selected: _selectedIndex == 2,
-            onTap: () {},
+            selected: _selectedIndex == 'Funcionarios',
+            onTap: () {
+              Navigator.pushNamed(context, '/Funcionarios', arguments: usuario);
+            },
           ),
           ListTile(
             title: const Row(
@@ -75,8 +74,10 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 Text("Mov. de Estoque"),
               ],
             ),
-            selected: _selectedIndex == 3,
-            onTap: () {},
+            selected: _selectedIndex == 'MovEstoque',
+            onTap: () {
+              Navigator.pushNamed(context, '/MovEstoque', arguments: usuario);
+            },
           ),
           ListTile(
             title: const Row(
@@ -88,8 +89,10 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 Text("Clientes"),
               ],
             ),
-            selected: _selectedIndex == 4,
-            onTap: () {},
+            selected: _selectedIndex == 'Clientes',
+            onTap: () {
+              Navigator.pushNamed(context, '/Clientes', arguments: usuario);
+            },
           ),
           ListTile(
             title: const Row(
@@ -101,8 +104,10 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 Text("Vendas e Ordens"),
               ],
             ),
-            selected: _selectedIndex == 5,
-            onTap: () {},
+            selected: _selectedIndex == 'VendasOrdens',
+            onTap: () {
+              Navigator.pushNamed(context, '/VendasOrdens', arguments: usuario);
+            },
           ),
           ListTile(
             title: const Row(
@@ -114,8 +119,10 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 Text("Fornecedores"),
               ],
             ),
-            selected: _selectedIndex == 6,
-            onTap: () {},
+            selected: _selectedIndex == 'Fornecedores',
+            onTap: () {
+              Navigator.pushNamed(context, '/Fornecedores', arguments: usuario);
+            },
           ),
         ],
       ),

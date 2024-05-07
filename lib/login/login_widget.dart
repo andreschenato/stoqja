@@ -40,19 +40,25 @@ class _LoginWidgetState extends State<LoginWidget> {
               maxWidth: 1000,
               minWidth: 200,
             ),
+            height: 55,
             child: UserSelect(onUserSelected: (selectedUser) {
               setState(() {
                 usuario = selectedUser;
               });
             }),
           ),
-          const SizedBox(height: 10),
-          TextField(
-            controller: senha,
-            obscureText: true,
-            decoration: const InputDecoration(
-              labelText: 'Senha',
-              border: OutlineInputBorder(),
+          const SizedBox(height: 25),
+          SizedBox(
+            height: 55,
+            child: TextField(
+              controller: senha,
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: 'Digite sua senha',
+                labelText: 'Senha',
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+              ),
             ),
           ),
           const SizedBox(height: 25.0),
@@ -76,9 +82,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                 bool? isValid;
                 isValid = await validaLogin(usuario.toString(), senha.text);
                 if (isValid) {
-                  Navigator.pushNamed(context, '/Menu', arguments: usuario.toString());
+                  Navigator.pushNamed(context, '/Menu',
+                      arguments: usuario.toString());
                 } else {
-                  Center(child: Text('Usuário ou senha inválidos'));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Usuário ou senha inválidos'),
+                    ),
+                  );
                 }
               },
               child: const Text(

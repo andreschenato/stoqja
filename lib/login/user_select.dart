@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/login/user_list.dart';
 
@@ -40,12 +41,17 @@ class _UserSelectState extends State<UserSelect> {
               return Text('Error: ${snapshot.error}');
             } else {
               List<String> userList = snapshot.data;
-              return DropdownButtonFormField<String>(
+              return DropdownButtonFormField2<String>(
                 isExpanded: true,
+                dropdownStyleData: DropdownStyleData(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8)
+                  )
+                ),
                 decoration: InputDecoration(
                   label: const Text('Usuário'),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4)),
+                      borderRadius: BorderRadius.circular(8)),
                 ),
                 hint: const Text("Selecione seu usuário"),
                 value: _selectedUser,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/menu_principal/drawer_component.dart';
+import 'package:stoque_ja/widgets/drawer_component.dart';
 import 'package:stoque_ja/menu_principal/menu_buttons.dart';
+import 'package:stoque_ja/widgets/mobile_appbar.dart';
 
 class MobileMenu extends StatefulWidget {
   const MobileMenu({super.key});
@@ -14,22 +15,8 @@ class _MobileMenuState extends State<MobileMenu> {
   Widget build(BuildContext context) {
     final String usuario = ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
-      drawer: DrawerComponent(),
-      appBar: AppBar(
-        title: SizedBox(
-          child: Row(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(usuario),
-                  Text('Cargo'),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: const DrawerComponent(tela: 'Menu',),
+      appBar: MobileAppbar(usuario),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
