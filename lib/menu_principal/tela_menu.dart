@@ -13,8 +13,8 @@ class TelaMenu extends StatefulWidget {
 class _TelaMenuState extends State<TelaMenu> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const Responsivo(
+    return const Scaffold(
+      body: Responsivo(
         mobile: MobileMenu(),
         desktop: DesktopMenu(),
       ),

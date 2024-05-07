@@ -4,7 +4,7 @@ Future userList() async {
   List<String> users = <String>[];
   var conexao = await MySqlDBConfiguration().connection;
   await conexao.connect();
-  var val = await conexao.execute("SELECT nome FROM teste");
+  var val = await conexao.execute("SELECT nome FROM Funcionario");
   for (var row in val.rows) {
     Map data = row.assoc();
     users.add('${data['nome']}');

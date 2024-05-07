@@ -26,7 +26,7 @@ class GridButton extends StatelessWidget {
     );
     return ElevatedButton(
       style: menuButton,
-      onPressed: () {},
+      onPressed: onPressed,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
