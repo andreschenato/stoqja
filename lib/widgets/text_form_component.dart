@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// Widget para substituir o campo de texto
+// padrão nos formulários
+
 class TextFormComponent extends StatelessWidget {
   final TextEditingController controller;
   final String? warning;

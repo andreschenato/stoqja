@@ -1,5 +1,7 @@
 import 'package:stoque_ja/database/db_config.dart';
 
+// Função que puxa os dados de um funcionário pelo id
+
 Future<Map<String, dynamic>> selectFuncionario(String idFuncionario) async {
   Map<String, dynamic> funcionario = {};
   var conexao = await MySqlDBConfiguration().connection;

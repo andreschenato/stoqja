@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/login/login_widget.dart';
+import 'package:stoque_ja/widgets/login_widget.dart';
 
-class MobileLogin extends StatefulWidget {
+// Construção da tela de login para mobile
+
+class MobileLogin extends StatelessWidget {
   const MobileLogin({super.key});
 
-  @override
-  State<MobileLogin> createState() => _MobileLoginState();
-}
-
-class _MobileLoginState extends State<MobileLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

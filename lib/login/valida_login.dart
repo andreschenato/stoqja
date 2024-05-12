@@ -1,5 +1,8 @@
 import 'package:stoque_ja/database/db_config.dart';
 
+/* Função que verifica se a senha digitada pelo usuário
+é igual à senha registrada para aquele usuário no banco de dados */
+
 Future<bool> validaLogin(String usuario, String senha) async {
   var conexao = await MySqlDBConfiguration().connection;
   await conexao.connect();

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/* Widget responsivo que serve para redirecionar
+   para a tela mobile ou desktop de cada tela
+   baseado no tamanho da tela do dispositivo */
+
 class Responsivo extends StatelessWidget {
   const Responsivo({super.key, required this.mobile, required this.desktop});
   final Widget mobile;

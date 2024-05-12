@@ -1,5 +1,7 @@
 import 'package:stoque_ja/database/db_config.dart';
 
+// Função que recebe os dados do funcionário e atualiza no banco
+
 Future editFuncionario(
   String idFuncionario,
   String nome,
