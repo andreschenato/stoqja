@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/login/login_widget.dart';
+import 'package:stoque_ja/widgets/login_widget.dart';
 
-class DesktopLogin extends StatefulWidget {
+// Construção da tela de login para desktop
+
+class DesktopLogin extends StatelessWidget {
   const DesktopLogin({super.key});
 
-  @override
-  State<DesktopLogin> createState() => _DesktopLoginState();
-}
-
-class _DesktopLoginState extends State<DesktopLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

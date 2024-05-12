@@ -1,5 +1,7 @@
 import 'package:stoque_ja/database/db_config.dart';
 
+// Função que puxa uma lista de cidades do banco de dados
+
 Future<List<Map<String, dynamic>>> listaCidades() async {
   List<Map<String, dynamic>> cidades = [];
   var conexao = await MySqlDBConfiguration().connection;

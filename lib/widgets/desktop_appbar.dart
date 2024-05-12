@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DesktopAppBar extends StatefulWidget implements PreferredSizeWidget{
+// Widget que cria uma appBar para desktop
+
+class DesktopAppBar extends StatelessWidget implements PreferredSizeWidget{
   const DesktopAppBar(String usuario, {super.key});
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
-  @override
-  State<DesktopAppBar> createState() => _DesktopAppBarState();
-}
-
-class _DesktopAppBarState extends State<DesktopAppBar> {
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
   @override
   Widget build(BuildContext context) {
     final String usuario = ModalRoute.of(context)?.settings.arguments as String;

@@ -8,6 +8,8 @@ import 'package:stoque_ja/widgets/form_cadastro.dart';
 import 'package:stoque_ja/widgets/cidade_selector.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
 
+// Dialog de cadastro do funcionário, implementa o formulario de cadastro
+
 class DialogCadastroFuncionario extends StatefulWidget {
   final String? idFuncionario;
   const DialogCadastroFuncionario({super.key, this.idFuncionario});

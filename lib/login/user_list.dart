@@ -1,5 +1,8 @@
 import 'package:stoque_ja/database/db_config.dart';
 
+// Função temporária, logo será substituída
+// Serve para selecionar um usuário para o login
+
 Future userList() async {
   List<String> users = <String>[];
   var conexao = await MySqlDBConfiguration().connection;

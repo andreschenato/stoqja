@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/drawer_component.dart';
 import 'package:stoque_ja/widgets/mobile_appbar.dart';
 
+// Construção da tela de vendas e ordens para mobile
+
 class MobileVendasOrdens extends StatefulWidget {
   const MobileVendasOrdens({super.key});
 

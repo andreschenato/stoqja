@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// Construção da tela de vendas e ordens para desktop
+
 class DesktopVendasOrdens extends StatefulWidget {
   const DesktopVendasOrdens({super.key});
 

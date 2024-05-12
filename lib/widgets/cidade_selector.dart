@@ -2,13 +2,16 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/backend/lista_cidades.dart';
 
+/* Widget que permite fazer a seleção de cidade
+no formulário de cadastro dos usuários */
+
 class CitySelect extends StatefulWidget {
   final void Function(Map<String, dynamic>?)? onCitySelected;
 
-  const CitySelect({Key? key, this.onCitySelected}) : super(key: key);
+  const CitySelect({super.key, this.onCitySelected});
 
   @override
-  _CitySelectState createState() => _CitySelectState();
+  State<CitySelect> createState() => _CitySelectState();
 }
 
 class _CitySelectState extends State<CitySelect> {

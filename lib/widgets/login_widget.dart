@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/login/user_select.dart';
 import 'package:stoque_ja/login/valida_login.dart';
+import 'package:stoque_ja/rotas/routes.dart';
+
+// Criação do widget de login
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -11,6 +14,16 @@ class LoginWidget extends StatefulWidget {
 class _LoginWidgetState extends State<LoginWidget> {
   String? usuario;
   final senha = TextEditingController();
+
+  void redirect(bool isValid) {
+    isValid
+        ? Navigator.pushNamed(context, Rota.menu, arguments: usuario.toString())
+        : ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Usuário ou senha inválidos'),
+            ),
+          );
+  }
 
   @override
   void dispose() {
@@ -81,16 +94,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               onPressed: () async {
                 bool? isValid;
                 isValid = await validaLogin(usuario.toString(), senha.text);
-                if (isValid) {
-                  Navigator.pushNamed(context, '/Menu',
-                      arguments: usuario.toString());
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Usuário ou senha inválidos'),
-                    ),
-                  );
-                }
+                redirect(isValid);
               },
               child: const Text(
                 'Login',

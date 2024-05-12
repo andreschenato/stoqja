@@ -2,6 +2,9 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/login/user_list.dart';
 
+/* Widget seletor de usuário usado na tela de login
+Recebe dados do banco pela função userList */
+
 class UserSelect extends StatefulWidget {
   final void Function(String?)? onUserSelected;
   const UserSelect({super.key, this.onUserSelected});

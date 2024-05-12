@@ -18,7 +18,8 @@ class StoqJa extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      // Redirecinamento das rotas, ver diretorio /rotas
+      initialRoute: Rota.login,
       routes: rotas,
     );
   }
