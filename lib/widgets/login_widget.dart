@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/login/user_select.dart';
-import 'package:stoque_ja/login/valida_login.dart';
+import 'package:stoque_ja/backend/valida_login.dart';
 import 'package:stoque_ja/rotas/routes.dart';
 
 class LoginWidget extends StatefulWidget {
-  const LoginWidget({Key? key}) : super(key: key);
+  const LoginWidget({super.key});
 
   @override
-  _LoginWidgetState createState() => _LoginWidgetState();
+  State<LoginWidget> createState() => _LoginWidgetState();
 }
 
 class _LoginWidgetState extends State<LoginWidget> {

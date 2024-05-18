@@ -1,14 +1,14 @@
-// mobile_login.dart
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/login_widget.dart';
+
+// Tela de login para mobile
 
 class MobileLogin extends StatelessWidget {
   const MobileLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[800],
+    return SizedBox(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

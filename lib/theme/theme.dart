@@ -1,5 +1,6 @@
-// theme.dart
 import 'package:flutter/material.dart';
+
+// Tema do app
 
 class AppThemes {
   static final lightTheme = ThemeData(

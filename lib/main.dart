@@ -1,21 +1,15 @@
-// main.dart
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/rotas/routes.dart';
 import 'theme.dart';
-import 'custom_app_bar.dart';
+import 'widgets/custom_app_bar.dart';
 
 void main() {
-  runApp(const StoqJa());
+  runApp(StoqJa());
 }
 
-class StoqJa extends StatefulWidget {
-  const StoqJa({super.key});
+class StoqJa extends StatelessWidget {
+  StoqJa({super.key});
 
-  @override
-  _StoqJaState createState() => _StoqJaState();
-}
-
-class _StoqJaState extends State<StoqJa> {
   final ValueNotifier<ThemeMode> _themeMode = ValueNotifier(ThemeMode.light);
 
   @override
@@ -29,6 +23,7 @@ class _StoqJaState extends State<StoqJa> {
           darkTheme: AppThemes.darkTheme,
           themeMode: currentTheme,
           debugShowCheckedModeBanner: false,
+          // Rotas do aplicativo
           initialRoute: Rota.login,
           routes: rotas,
           builder: (context, child) {

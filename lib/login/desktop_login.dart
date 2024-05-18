@@ -1,6 +1,7 @@
-// desktop_login.dart
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/login_widget.dart';
+
+// Tela de login para desktop
 
 class DesktopLogin extends StatelessWidget {
   const DesktopLogin({super.key});
@@ -27,14 +28,13 @@ class DesktopLogin extends StatelessWidget {
           ],
         ),
         Expanded(
-          child: Container(
-            color: Colors.red,
+          child: SizedBox(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height - AppBar().preferredSize.height,
                   width: MediaQuery.of(context).size.width / 3,
                   child: const SizedBox.expand(
                     child: FittedBox(
