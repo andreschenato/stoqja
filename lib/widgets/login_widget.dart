@@ -3,12 +3,11 @@ import 'package:stoque_ja/login/user_select.dart';
 import 'package:stoque_ja/login/valida_login.dart';
 import 'package:stoque_ja/rotas/routes.dart';
 
-// Criação do widget de login
-
 class LoginWidget extends StatefulWidget {
-  const LoginWidget({super.key});
+  const LoginWidget({Key? key}) : super(key: key);
+
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  _LoginWidgetState createState() => _LoginWidgetState();
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
@@ -33,6 +32,9 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Container(
       constraints: const BoxConstraints(
         maxHeight: 300,
@@ -43,9 +45,12 @@ class _LoginWidgetState extends State<LoginWidget> {
       width: MediaQuery.of(context).size.width / 2,
       height: MediaQuery.of(context).size.height / 2,
       padding: const EdgeInsets.all(30.0),
-      decoration: const BoxDecoration(
-          color: Colors.grey,
-          borderRadius: BorderRadius.all(Radius.circular(40))),
+      decoration: BoxDecoration(
+        color: theme.brightness == Brightness.dark
+            ? colorScheme.surface
+            : const Color.fromARGB(255, 198, 198, 198),
+        borderRadius: const BorderRadius.all(Radius.circular(40)),
+      ),
       child: Column(
         children: [
           Container(
@@ -69,8 +74,9 @@ class _LoginWidgetState extends State<LoginWidget> {
               decoration: InputDecoration(
                 hintText: 'Digite sua senha',
                 labelText: 'Senha',
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
             ),
           ),
@@ -86,9 +92,18 @@ class _LoginWidgetState extends State<LoginWidget> {
             width: double.infinity,
             child: ElevatedButton(
               style: ButtonStyle(
-                shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return colorScheme.onSurface.withOpacity(0.12);
+                    }
+                    return colorScheme.primary;
+                  },
                 ),
               ),
               onPressed: () async {
@@ -96,9 +111,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                 isValid = await validaLogin(usuario.toString(), senha.text);
                 redirect(isValid);
               },
-              child: const Text(
+              child: Text(
                 'Login',
-                style: TextStyle(fontSize: 50),
+                style: TextStyle(
+                  fontSize: 40,
+                  color: theme.brightness == Brightness.dark
+                      ? colorScheme.onPrimary
+                      : colorScheme.onSurface,
+                ),
               ),
             ),
           ),

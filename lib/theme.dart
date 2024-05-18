@@ -12,6 +12,7 @@ class AppThemes {
     appBarTheme: const AppBarTheme(
       backgroundColor: Color.fromRGBO(255, 117, 0, 1),
     ),
+   
   );
 
   static final darkTheme = ThemeData(
@@ -24,5 +25,6 @@ class AppThemes {
     appBarTheme: const AppBarTheme(
       backgroundColor: Color.fromRGBO(255, 117, 0, 1),
     ),
+   
   );
 }

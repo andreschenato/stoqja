@@ -1,26 +1,44 @@
+// main.dart
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/rotas/routes.dart';
+import 'theme.dart';
+import 'custom_app_bar.dart';
 
 void main() {
   runApp(const StoqJa());
 }
 
-class StoqJa extends StatelessWidget {
+class StoqJa extends StatefulWidget {
   const StoqJa({super.key});
 
   @override
+  _StoqJaState createState() => _StoqJaState();
+}
+
+class _StoqJaState extends State<StoqJa> {
+  final ValueNotifier<ThemeMode> _themeMode = ValueNotifier(ThemeMode.light);
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'stoqJa',
-      theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromRGBO(255, 117, 0, 1)),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-      // Redirecinamento das rotas, ver diretorio /rotas
-      initialRoute: Rota.login,
-      routes: rotas,
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: _themeMode,
+      builder: (context, currentTheme, _) {
+        return MaterialApp(
+          title: 'stoqJa',
+          theme: AppThemes.lightTheme,
+          darkTheme: AppThemes.darkTheme,
+          themeMode: currentTheme,
+          debugShowCheckedModeBanner: false,
+          initialRoute: Rota.login,
+          routes: rotas,
+          builder: (context, child) {
+            return Scaffold(
+              appBar: CustomAppBar(themeMode: _themeMode),
+              body: child,
+            );
+          },
+        );
+      },
     );
   }
 }
