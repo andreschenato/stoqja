@@ -3,14 +3,12 @@ import 'package:stoque_ja/mov_estoque/desktop_movestoque.dart';
 import 'package:stoque_ja/mov_estoque/mobile_movestoque.dart';
 import 'package:stoque_ja/responsive/responsivo.dart';
 
-class TelaMovEstoque extends StatefulWidget {
+// Tela de movimentação de estoque que se baseia no widget "responsivo"
+// para redirecionar para a tela mobile ou desktop
+
+class TelaMovEstoque extends StatelessWidget {
   const TelaMovEstoque({super.key});
 
-  @override
-  State<TelaMovEstoque> createState() => _TelaMovEstoqueState();
-}
-
-class _TelaMovEstoqueState extends State<TelaMovEstoque> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

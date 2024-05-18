@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/drawer_component.dart';
 import 'package:stoque_ja/widgets/mobile_appbar.dart';
 
+// Construção da produtos de estoque para mobile
+
 class MobileProdutos extends StatefulWidget {
   const MobileProdutos({super.key});
 

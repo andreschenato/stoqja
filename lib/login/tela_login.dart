@@ -1,23 +1,21 @@
+// tela_login.dart
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/login/desktop_login.dart';
 import 'package:stoque_ja/login/mobile_login.dart';
 import '../../responsive/responsivo.dart';
 
-class TelaLogin extends StatefulWidget {
+class TelaLogin extends StatelessWidget {
   const TelaLogin({super.key});
 
   @override
-  State<TelaLogin> createState() => _TelaLoginState();
-}
-
-class _TelaLoginState extends State<TelaLogin> {
-  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Responsivo(
-        mobile: MobileLogin(),
-        desktop: DesktopLogin(),
-      ),
+    return const Responsivo(
+      mobile: MobileLogin(),
+      desktop: DesktopLogin(),
     );
   }
 }
+
+/* Tela que se baseia no widget "Responsivo" 
+para redirecionar para a tela mobile ou desktop
+conforme o tamanho da tela do dispositivo */

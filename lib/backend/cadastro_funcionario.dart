@@ -1,5 +1,10 @@
 import 'package:stoque_ja/database/db_config.dart';
 
+/*
+   Função que recebe os valores passados para ela 
+   e cadastra o usuário no banco com base neles.
+*/
+
 Future cadastroFuncionario(
   String nome,
   String senha,
@@ -17,7 +22,8 @@ Future cadastroFuncionario(
   var conexao = await MySqlDBConfiguration().connection;
   await conexao.connect();
   await conexao.execute(
-    "INSERT INTO Funcionario (nome, senha, cargo, cpf, telefone, email, cep, endereco, numEndereco, complemento, bairro, FK_idCidade) VALUES (:nome, :senha, :cargo, :cpf, :telefone, :email, :cep, :endereco, :numEndereco, :complemento, :bairro, :idCidade)",
+    "INSERT INTO Funcionario (nome, senha, cargo, cpf, telefone, email, cep, endereco, numEndereco, complemento, bairro, FK_idCidade)"
+    " VALUES (:nome, :senha, :cargo, :cpf, :telefone, :email, :cep, :endereco, :numEndereco, :complemento, :bairro, :idCidade)",
     {
       "nome": nome,
       "senha": senha,

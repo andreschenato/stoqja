@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+// Drawer usado nas telas mobile para facilitar a navegação
+
 class DrawerComponent extends StatelessWidget {
   final String tela;
   const DrawerComponent({super.key, required this.tela});
   @override
   Widget build(BuildContext context) {
-    final String _selectedIndex = tela;
+    final String selectedIndex = tela;
     final String usuario = ModalRoute.of(context)?.settings.arguments as String;
     return Drawer(
       child: ListView(
@@ -13,7 +15,7 @@ class DrawerComponent extends StatelessWidget {
           SizedBox(
             height: 100,
             child: DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.orange,
               ),
               child: Text(usuario),
@@ -29,7 +31,7 @@ class DrawerComponent extends StatelessWidget {
                 Text("Menu"),
               ],
             ),
-            selected: _selectedIndex == 'Menu',
+            selected: selectedIndex == 'Menu',
             onTap: () {
               Navigator.pushNamed(context, '/Menu', arguments: usuario);
             },
@@ -44,7 +46,7 @@ class DrawerComponent extends StatelessWidget {
                 Text("Produtos"),
               ],
             ),
-            selected: _selectedIndex == 'Produtos',
+            selected: selectedIndex == 'Produtos',
             onTap: () {
               Navigator.pushNamed(context, '/Produtos', arguments: usuario);
             },
@@ -59,7 +61,7 @@ class DrawerComponent extends StatelessWidget {
                 Text("Funcionários"),
               ],
             ),
-            selected: _selectedIndex == 'Funcionarios',
+            selected: selectedIndex == 'Funcionarios',
             onTap: () {
               Navigator.pushNamed(context, '/Funcionarios', arguments: usuario);
             },
@@ -74,7 +76,7 @@ class DrawerComponent extends StatelessWidget {
                 Text("Mov. de Estoque"),
               ],
             ),
-            selected: _selectedIndex == 'MovEstoque',
+            selected: selectedIndex == 'MovEstoque',
             onTap: () {
               Navigator.pushNamed(context, '/MovEstoque', arguments: usuario);
             },
@@ -89,7 +91,7 @@ class DrawerComponent extends StatelessWidget {
                 Text("Clientes"),
               ],
             ),
-            selected: _selectedIndex == 'Clientes',
+            selected: selectedIndex == 'Clientes',
             onTap: () {
               Navigator.pushNamed(context, '/Clientes', arguments: usuario);
             },
@@ -104,7 +106,7 @@ class DrawerComponent extends StatelessWidget {
                 Text("Vendas e Ordens"),
               ],
             ),
-            selected: _selectedIndex == 'VendasOrdens',
+            selected: selectedIndex == 'VendasOrdens',
             onTap: () {
               Navigator.pushNamed(context, '/VendasOrdens', arguments: usuario);
             },
@@ -119,7 +121,7 @@ class DrawerComponent extends StatelessWidget {
                 Text("Fornecedores"),
               ],
             ),
-            selected: _selectedIndex == 'Fornecedores',
+            selected: selectedIndex == 'Fornecedores',
             onTap: () {
               Navigator.pushNamed(context, '/Fornecedores', arguments: usuario);
             },

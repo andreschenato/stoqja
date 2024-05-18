@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// Widget de formulário usado em todos os formulários 
+// para economizar linhas
+
 class FormCadastro extends StatelessWidget {
   final List<Widget> components;
   final Key formKey;

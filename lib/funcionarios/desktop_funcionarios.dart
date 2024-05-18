@@ -6,6 +6,8 @@ import 'package:stoque_ja/widgets/buttons_screens.dart';
 import 'package:stoque_ja/widgets/desktop_appbar.dart';
 import 'package:stoque_ja/widgets/list_component.dart';
 
+// Construção da tela funcionários para desktop
+
 class DesktopFunc extends StatefulWidget {
   const DesktopFunc({super.key});
 
@@ -56,12 +58,16 @@ class _DesktopFuncState extends State<DesktopFunc> {
                 icone: Icons.edit_document,
                 texto: 'Editar',
                 onPressed: () async {
-                  final bool? result = await showDialog(
-                    context: context,
-                    builder: (context) => DialogCadastroFuncionario(idFuncionario: selectedId,),
-                  );
-                  if (result == true) {
-                    _loadFuncList();
+                  if (selectedId != null) {
+                    final bool? result = await showDialog(
+                      context: context,
+                      builder: (context) => DialogCadastroFuncionario(
+                        idFuncionario: selectedId,
+                      ),
+                    );
+                    if (result == true) {
+                      _loadFuncList();
+                    }
                   }
                 },
               ),
@@ -102,7 +108,12 @@ class _DesktopFuncState extends State<DesktopFunc> {
                 DataColumn(label: Text('Telefone')),
               ],
               onRowSelected: (selectedData) {
-                selectedId = selectedData['idFuncionario'];
+                final String newSelectedId = selectedData['idFuncionario'];
+                if (newSelectedId != selectedId) {
+                    selectedId = selectedData['idFuncionario'];
+                } else {
+                    selectedId = null;
+                }
               },
             ),
           ),

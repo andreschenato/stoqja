@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/drawer_component.dart';
 import 'package:stoque_ja/widgets/mobile_appbar.dart';
 
+// Construção da tela de fornecedores para mobile
+
 class MobileFornecedor extends StatefulWidget {
   const MobileFornecedor({super.key});
 

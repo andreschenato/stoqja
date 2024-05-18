@@ -4,6 +4,8 @@ import 'package:stoque_ja/widgets/buttons_screens.dart';
 import 'package:stoque_ja/widgets/desktop_appbar.dart';
 import 'package:stoque_ja/widgets/list_component.dart';
 
+// Construção da tela de clientes para desktop
+
 class DesktopClientes extends StatefulWidget {
   const DesktopClientes({super.key});
 

@@ -5,6 +5,8 @@ import 'package:stoque_ja/widgets/drawer_component.dart';
 import 'package:stoque_ja/widgets/list_component.dart';
 import 'package:stoque_ja/widgets/mobile_appbar.dart';
 
+// Construção da tela funcionários para mobile
+
 class MobileFunc extends StatefulWidget {
   const MobileFunc({super.key});
   @override
