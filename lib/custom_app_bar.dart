@@ -10,8 +10,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: const Image(
-        image: AssetImage('assets/imagens/stoqja_darkmode.png'), // Path to your image
-        height: 40, // Adjust height as needed
+        image: AssetImage('assets/imagens/stoqja_darkmode.png'),
+        height: 40,
       ),
       actions: [
         Switch(
