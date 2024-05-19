@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/drawer_component.dart';
 import 'package:stoque_ja/widgets/mobile_appbar.dart';
 
+// Construção da tela de movimentação de estoque para mobile
+
 class MobileMovEstoque extends StatefulWidget {
   const MobileMovEstoque({super.key});
 

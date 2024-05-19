@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
+// Widget que cria uma tabela para visualizar itens
+// como funcionários, produtos e etc
+
 class ListComponent extends StatefulWidget {
   final List<DataColumn> dadosColuna;
   final List<DataCell> Function(Map<String, dynamic> data) dadosCelulas;

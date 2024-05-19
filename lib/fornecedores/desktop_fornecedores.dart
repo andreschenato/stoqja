@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/desktop_appbar.dart';
 
+// Construção da tela de fornecedores para desktop
+
 class DesktopFornecedor extends StatefulWidget {
   const DesktopFornecedor({super.key});
 

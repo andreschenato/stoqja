@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// Criação do widget do botão usado nos botões do menu
+
 class GridButton extends StatelessWidget {
   final String textoBotao;
   final VoidCallback onPressed;

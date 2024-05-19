@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/drawer_component.dart';
 import 'package:stoque_ja/widgets/mobile_appbar.dart';
 
+// Construção da tela de clientes para mobile
+
 class MobileClientes extends StatefulWidget {
   const MobileClientes({super.key});
 

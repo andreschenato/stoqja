@@ -1,5 +1,7 @@
 import 'package:stoque_ja/database/db_config.dart';
 
+// Função que retorna uma lista de funcionários do banco
+
 Future<List<Map<String, dynamic>>> listaFuncionarios() async {
   List<Map<String, dynamic>> funcionarios = <Map<String, dynamic>>[];
   var conexao = await MySqlDBConfiguration().connection;

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// Widget dos botões que define o tema e requisita 
+// ícones, a função quando pressionado e o texto
+
 class ButtonsScreen extends StatelessWidget {
   final IconData icone;
   final VoidCallback onPressed;
@@ -20,7 +23,7 @@ class ButtonsScreen extends StatelessWidget {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: Container(
+        child: SizedBox(
           height: 45,
           child: ElevatedButton.icon(
             style: screenButton,

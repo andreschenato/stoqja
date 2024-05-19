@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/desktop_appbar.dart';
 
+// Construção da tela de movimentação de estoque para desktop
+
 class DesktopMovEstoque extends StatefulWidget {
   const DesktopMovEstoque({super.key});
 

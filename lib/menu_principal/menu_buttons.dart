@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/menu_principal/button.dart';
+import 'package:stoque_ja/rotas/routes.dart';
+
+// Widget que implementa os botões do widget "GridButton"
+// para criar a grade de botões do menu
 
 class MenuButtons extends StatelessWidget {
   const MenuButtons({super.key});
@@ -33,7 +37,7 @@ class MenuButtons extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                  '/Produtos',
+                  Rota.produto,
                   arguments: usuario,
                 );
               },
@@ -44,7 +48,7 @@ class MenuButtons extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                  '/Funcionarios',
+                  Rota.funcionario,
                   arguments: usuario,
                 );
               },
@@ -55,7 +59,7 @@ class MenuButtons extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                  '/MovEstoque',
+                  Rota.estoque,
                   arguments: usuario,
                 );
               },
@@ -66,7 +70,7 @@ class MenuButtons extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                  '/Clientes',
+                  Rota.cliente,
                   arguments: usuario,
                 );
               },
@@ -77,7 +81,7 @@ class MenuButtons extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                  '/VendasOrdens',
+                  Rota.venda,
                   arguments: usuario,
                 );
               },
@@ -88,7 +92,7 @@ class MenuButtons extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                  '/Fornecedores',
+                  Rota.fornecedor,
                   arguments: usuario,
                 );
               },

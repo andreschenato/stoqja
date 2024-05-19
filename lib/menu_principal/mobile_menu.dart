@@ -3,14 +3,11 @@ import 'package:stoque_ja/widgets/drawer_component.dart';
 import 'package:stoque_ja/menu_principal/menu_buttons.dart';
 import 'package:stoque_ja/widgets/mobile_appbar.dart';
 
-class MobileMenu extends StatefulWidget {
+// Construção da tela de menu para mobile
+
+class MobileMenu extends StatelessWidget {
   const MobileMenu({super.key});
 
-  @override
-  State<MobileMenu> createState() => _MobileMenuState();
-}
-
-class _MobileMenuState extends State<MobileMenu> {
   @override
   Widget build(BuildContext context) {
     final String usuario = ModalRoute.of(context)?.settings.arguments as String;
@@ -24,11 +21,11 @@ class _MobileMenuState extends State<MobileMenu> {
           children: [
             Expanded(
                 child: Align(
-              alignment: AlignmentDirectional(0, 0),
-              child: Container(
+              alignment:const AlignmentDirectional(0, 0),
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
-                child: MenuButtons(),
+                child: const MenuButtons(),
               ),
             )),
           ],
