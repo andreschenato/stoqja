@@ -21,7 +21,7 @@ class AppThemes {
       secondary: Colors.deepOrange,
     ),
     useMaterial3: true,
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: Colors.grey[850],
     appBarTheme: const AppBarTheme(
       backgroundColor: Color.fromRGBO(255, 117, 0, 1),
     ),

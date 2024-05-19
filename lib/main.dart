@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/rotas/routes.dart';
-import 'theme.dart';
+import 'package:stoque_ja/theme/theme.dart';
 import 'widgets/custom_app_bar.dart';
 
 void main() {
