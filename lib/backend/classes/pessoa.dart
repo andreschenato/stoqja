@@ -1,3 +1,4 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stoque_ja/widgets/cidade_selector.dart';
@@ -17,17 +18,17 @@ abstract class PessoaEmpresa {
   late TextEditingController? bairro;
   late String? idCidade;
 
-  PessoaEmpresa({
-    String? nome,
-    String? cpfCnpj,
-    String? telefone,
-    String? email,
-    String? endereco,
-    String? cep,
-    String? numEndereco,
-    String? complemento,
-    String? bairro,
-  }) {
+  PessoaEmpresa(
+      {String? nome,
+      String? cpfCnpj,
+      String? telefone,
+      String? email,
+      String? endereco,
+      String? cep,
+      String? numEndereco,
+      String? complemento,
+      String? bairro,
+      this.idCidade}) {
     this.nome = TextEditingController(text: nome);
     this.cpfCnpj = TextEditingController(text: cpfCnpj);
     this.telefone = TextEditingController(text: telefone);
@@ -39,9 +40,9 @@ abstract class PessoaEmpresa {
     this.bairro = TextEditingController(text: bairro);
   }
 
-  Widget campoNome() {
+  Widget campoNome(int flex) {
     return Expanded(
-      flex: 7,
+      flex: flex,
       child: TextFormComponent(
         maxL: 200,
         controller: nome!,
@@ -51,27 +52,33 @@ abstract class PessoaEmpresa {
     );
   }
 
-  Widget campoCpfCnpj() {
+  Widget campoCpfCnpj(int flex) {
     return Expanded(
-      flex: 3,
+      flex: flex,
       child: TextFormComponent(
         txtInput: TextInputType.number,
-        inputFormat: [FilteringTextInputFormatter.digitsOnly],
-        maxL: 11,
+        maxL: 18,
         controller: cpfCnpj!,
+        inputFormat: [
+          FilteringTextInputFormatter.digitsOnly,
+          CpfOuCnpjFormatter(),
+        ],
         warning: 'Insira o CPF',
         label: 'CPF',
       ),
     );
   }
 
-  Widget campoTelefone() {
+  Widget campoTelefone(int flex) {
     return Expanded(
-      flex: 3,
+      flex: flex,
       child: TextFormComponent(
         txtInput: TextInputType.number,
-        inputFormat: [FilteringTextInputFormatter.digitsOnly],
-        maxL: 11,
+        inputFormat: [
+          FilteringTextInputFormatter.digitsOnly,
+          TelefoneInputFormatter(),
+        ],
+        maxL: 15,
         controller: telefone!,
         warning: 'Insira o telefone',
         label: 'Telefone',
@@ -79,8 +86,9 @@ abstract class PessoaEmpresa {
     );
   }
 
-  Widget campoEmail() {
+  Widget campoEmail(int flex) {
     return Expanded(
+      flex: flex,
       child: TextFormComponent(
         txtInput: TextInputType.emailAddress,
         maxL: 100,
@@ -90,9 +98,9 @@ abstract class PessoaEmpresa {
     );
   }
 
-  Widget campoEndereco() {
+  Widget campoEndereco(int flex) {
     return Expanded(
-      flex: 7,
+      flex: flex,
       child: TextFormComponent(
         maxL: 300,
         controller: endereco!,
@@ -102,13 +110,16 @@ abstract class PessoaEmpresa {
     );
   }
 
-  Widget campoCep() {
+  Widget campoCep(int flex) {
     return Expanded(
-      flex: 2,
+      flex: flex,
       child: TextFormComponent(
         txtInput: TextInputType.number,
-        inputFormat: [FilteringTextInputFormatter.digitsOnly],
-        maxL: 8,
+        inputFormat: [
+          FilteringTextInputFormatter.digitsOnly,
+          CepInputFormatter(ponto: false),
+        ],
+        maxL: 9,
         controller: cep!,
         warning: 'Insira o CEP',
         label: 'CEP',
@@ -116,13 +127,11 @@ abstract class PessoaEmpresa {
     );
   }
 
-  Widget campoNumEndereco() {
+  Widget campoNumEndereco(int flex) {
     return Expanded(
-      flex: 2,
+      flex: flex,
       child: TextFormComponent(
-        txtInput: TextInputType.number,
-        inputFormat: [FilteringTextInputFormatter.digitsOnly],
-        maxL: 5,
+        maxL: 10,
         controller: numEndereco!,
         warning: 'Insira o número',
         label: 'Número',
@@ -130,9 +139,9 @@ abstract class PessoaEmpresa {
     );
   }
 
-  Widget campoComplemento() {
+  Widget campoComplemento(int flex) {
     return Expanded(
-      flex: 4,
+      flex: flex,
       child: TextFormComponent(
         maxL: 500,
         controller: complemento!,
@@ -141,9 +150,9 @@ abstract class PessoaEmpresa {
     );
   }
 
-  Widget campoBairro() {
+  Widget campoBairro(int flex) {
     return Expanded(
-      flex: 3,
+      flex: flex,
       child: TextFormComponent(
         maxL: 300,
         controller: bairro!,
@@ -153,13 +162,20 @@ abstract class PessoaEmpresa {
     );
   }
 
-  Widget campoIdCidade() {
+  Widget campoIdCidade(int flex) {
     return Expanded(
-      flex: 3,
-      child: CitySelect(
-        onCitySelected: (selectedCidade) {
-          idCidade = selectedCidade!['idCidade'].toString();
-        },
+      flex: flex,
+      child: SizedBox(
+        height: 70,
+        child: Column(
+          children: [
+            CitySelect(
+              onCitySelected: (selectedCidade) {
+                idCidade = selectedCidade!['idCidade'].toString();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

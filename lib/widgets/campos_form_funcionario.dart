@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/backend/funcionario.dart';
+import 'package:stoque_ja/backend/classes/funcionario.dart';
 import 'package:stoque_ja/widgets/form_cadastro.dart';
 
 // Componentes do formulário do funcionário
@@ -10,8 +10,7 @@ class CamposFormFuncionario extends StatefulWidget {
   const CamposFormFuncionario({super.key, this.idFuncionario});
 
   @override
-  State<CamposFormFuncionario> createState() =>
-      _CamposFormFuncionarioState();
+  State<CamposFormFuncionario> createState() => _CamposFormFuncionarioState();
 }
 
 class _CamposFormFuncionarioState extends State<CamposFormFuncionario> {
@@ -39,6 +38,7 @@ class _CamposFormFuncionarioState extends State<CamposFormFuncionario> {
     funcionario.bairro?.dispose();
     funcionario.cargo?.dispose();
     funcionario.senha?.dispose();
+    funcionario.salario?.dispose();
     super.dispose();
   }
 
@@ -50,106 +50,110 @@ class _CamposFormFuncionarioState extends State<CamposFormFuncionario> {
         ? labelBotao = 'Salvar'
         : labelBotao = 'Cadastrar';
     return FormCadastro(
-          formKey: formKey,
-          components: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                funcionario.campoNome(),
-                const Spacer(),
-                funcionario.campoCargo(),
-              ],
+      formKey: formKey,
+      components: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            funcionario.campoNome(5),
+            const Spacer(),
+            funcionario.campoCargo(3),
+            const Spacer(),
+            funcionario.campoSalario(2),
+          ],
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            funcionario.campoCpfCnpj(3),
+            const Spacer(),
+            funcionario.campoData(3),
+            const Spacer(),
+            funcionario.campoSenha(4),
+          ],
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            funcionario.campoEmail(6),
+            const Spacer(),
+            funcionario.campoTelefone(4)
+          ],
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            funcionario.campoCep(3),
+            const Spacer(),
+            funcionario.campoEndereco(5),
+            const Spacer(),
+            funcionario.campoNumEndereco(2),
+          ],
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            funcionario.campoBairro(2),
+            const Spacer(),
+            funcionario.campoIdCidade(4),
+            const Spacer(),
+            funcionario.campoComplemento(4),
+          ],
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+              child: const Text('Cancelar'),
             ),
             const SizedBox(
-              height: 25,
+              width: 25,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                funcionario.campoCpfCnpj(),
-                const Spacer(),
-                funcionario.campoTelefone(),
-                const Spacer(),
-                funcionario.campoSenha(),
-              ],
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                funcionario.campoEmail(),
-              ],
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                funcionario.campoCep(),
-                const Spacer(),
-                funcionario.campoEndereco(),
-                const Spacer(),
-                funcionario.campoNumEndereco(),
-              ],
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                funcionario.campoBairro(),
-                const Spacer(),
-                funcionario.campoIdCidade(),
-                const Spacer(),
-                funcionario.campoComplemento(),
-              ],
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(false);
-                  },
-                  child: const Text('Cancelar'),
-                ),
-                const SizedBox(
-                  width: 25,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (widget.idFuncionario != null) {
-                      if (formKey.currentState!.validate()) {
-                        funcionario.updateFunc(widget.idFuncionario!);
-                        Timer(
-                          const Duration(seconds: 1),
-                          () {
-                            Navigator.of(context).pop(true);
-                          },
-                        );
-                      }
-                    } else if (formKey.currentState!.validate()) {
-                      funcionario.createFunc();
-                      Timer(
-                        const Duration(seconds: 1),
-                        () {
-                          Navigator.of(context).pop(true);
-                        },
-                      );
-                    }
-                  },
-                  child: Text(labelBotao),
-                ),
-              ],
+            ElevatedButton(
+              onPressed: () {
+                if (widget.idFuncionario != null) {
+                  if (formKey.currentState!.validate()) {
+                    funcionario.updateFunc(widget.idFuncionario!);
+                    Timer(
+                      const Duration(seconds: 1),
+                      () {
+                        Navigator.of(context).pop(true);
+                      },
+                    );
+                  }
+                } else if (formKey.currentState!.validate()) {
+                  funcionario.createFunc();
+                  Timer(
+                    const Duration(seconds: 1),
+                    () {
+                      Navigator.of(context).pop(true);
+                    },
+                  );
+                }
+              },
+              child: Text(labelBotao),
             ),
           ],
-        );
+        ),
+      ],
+    );
   }
 }

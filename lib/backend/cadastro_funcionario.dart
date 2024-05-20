@@ -17,13 +17,15 @@ Future cadastroFuncionario(
   String numEndereco,
   String complemento,
   String bairro,
+  String salario,
+  String dataContrato,
   String idCidade,
 ) async {
   var conexao = await MySqlDBConfiguration().connection;
   await conexao.connect();
   await conexao.execute(
-    "INSERT INTO Funcionario (nome, senha, cargo, cpf, telefone, email, cep, endereco, numEndereco, complemento, bairro, FK_idCidade)"
-    " VALUES (:nome, :senha, :cargo, :cpf, :telefone, :email, :cep, :endereco, :numEndereco, :complemento, :bairro, :idCidade)",
+    "INSERT INTO Funcionario (nome, senha, cargo, cpf, telefone, email, cep, endereco, numEndereco, complemento, bairro, salario, dataContrato, FK_idCidade)"
+    " VALUES (:nome, :senha, :cargo, :cpf, :telefone, :email, :cep, :endereco, :numEndereco, :complemento, :bairro, :salario, :dataContrato, :idCidade)",
     {
       "nome": nome,
       "senha": senha,
@@ -36,6 +38,8 @@ Future cadastroFuncionario(
       "numEndereco": numEndereco,
       "complemento": complemento,
       "bairro": bairro,
+      "salario": salario,
+      "dataContrato": dataContrato,
       "idCidade": idCidade,
     },
   );
