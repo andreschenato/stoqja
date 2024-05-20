@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:stoque_ja/rotas/routes.dart';
 import 'package:stoque_ja/theme/theme.dart';
 import 'widgets/custom_app_bar.dart';
@@ -18,6 +19,12 @@ class StoqJa extends StatelessWidget {
       valueListenable: _themeMode,
       builder: (context, currentTheme, _) {
         return MaterialApp(
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate
+          ],
+          supportedLocales: const [Locale('pt', 'BR')],
           title: 'stoqJa',
           theme: AppThemes.lightTheme,
           darkTheme: AppThemes.darkTheme,

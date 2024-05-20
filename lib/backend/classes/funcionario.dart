@@ -1,13 +1,20 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:stoque_ja/backend/cadastro_funcionario.dart';
-import 'package:stoque_ja/backend/pessoa.dart';
+import 'package:stoque_ja/backend/classes/pessoa.dart';
 import 'package:stoque_ja/backend/select_funcionario.dart';
 import 'package:stoque_ja/backend/update_funcionario.dart';
+import 'package:stoque_ja/widgets/date_selector.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
+
+import 'dart:developer' as dev;
 
 class Funcionario extends PessoaEmpresa {
   late TextEditingController? senha;
   late TextEditingController? cargo;
+  late TextEditingController? salario;
+  late TextEditingController? dataContrato;
 
   Funcionario({
     super.nome,
@@ -19,16 +26,39 @@ class Funcionario extends PessoaEmpresa {
     super.numEndereco,
     super.complemento,
     super.bairro,
+    super.idCidade,
     String? senha,
     String? cargo,
+    String? salario,
+    String? dataContrato,
   }) {
     this.senha = TextEditingController(text: senha);
     this.cargo = TextEditingController(text: cargo);
+    this.salario = TextEditingController(text: salario);
+    this.dataContrato = TextEditingController(text: dataContrato);
   }
 
-  Widget campoSenha() {
+  @override
+  Widget campoCpfCnpj(int flex){
     return Expanded(
-      flex: 4,
+      flex: flex,
+      child: TextFormComponent(
+        txtInput: TextInputType.number,
+        maxL: 14,
+        controller: cpfCnpj!,
+        inputFormat: [
+          FilteringTextInputFormatter.digitsOnly,
+          CpfOuCnpjFormatter(),
+        ],
+        warning: 'Insira o CPF',
+        label: 'CPF',
+      ),
+    );
+  }
+
+  Widget campoSenha(int flex) {
+    return Expanded(
+      flex: flex,
       child: TextFormComponent(
         maxL: 25,
         controller: senha!,
@@ -38,14 +68,43 @@ class Funcionario extends PessoaEmpresa {
     );
   }
 
-  Widget campoCargo() {
+  Widget campoCargo(int flex) {
     return Expanded(
-      flex: 3,
+      flex: flex,
       child: TextFormComponent(
         maxL: 200,
         controller: cargo!,
         warning: 'Insira o cargo',
         label: 'Cargo',
+      ),
+    );
+  }
+
+  Widget campoSalario(int flex) {
+    return Expanded(
+      flex: flex,
+      child: TextFormComponent(
+        maxL: 12,
+        controller: salario!,
+        warning: 'Insira o salário',
+        onSubmit: (value) {
+          dev.log(salario!.text);
+        },
+        label: 'Salário',
+      ),
+    );
+  }
+
+  Widget campoData(int flex) {
+    return Expanded(
+      flex: flex,
+      child: SizedBox(
+        height: 70,
+        child: DateSelector(
+          controller: dataContrato!,
+          label: "Data de contratação",
+          warning: "Insira a data de contrato",
+        ),
       ),
     );
   }
@@ -66,8 +125,11 @@ class Funcionario extends PessoaEmpresa {
         ? complemento?.text = funcionario['complemento']
         : complemento?.text = '';
     bairro?.text = funcionario['bairro'];
-    funcionario['email'] !=
-        null ? email?.text = funcionario['email'] : email?.text = '';
+    funcionario['email'] != null
+        ? email?.text = funcionario['email']
+        : email?.text = '';
+    salario?.text = funcionario['salario'];
+    dataContrato?.text = funcionario['dataContrato'];
     idCidade = funcionario['FK_idCidade'];
   }
 
@@ -85,6 +147,8 @@ class Funcionario extends PessoaEmpresa {
       numEndereco!.text,
       complemento!.text,
       bairro!.text,
+      salario!.text,
+      dataContrato!.text,
       idCidade!,
     );
   }
@@ -102,6 +166,8 @@ class Funcionario extends PessoaEmpresa {
       numEndereco!.text,
       complemento!.text,
       bairro!.text,
+      salario!.text,
+      dataContrato!.text,
       idCidade!,
     );
   }

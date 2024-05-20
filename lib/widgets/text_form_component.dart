@@ -10,9 +10,10 @@ class TextFormComponent extends StatelessWidget {
   final String label;
   final int maxL;
   final TextInputType? txtInput;
+  final void Function(String)? onSubmit;
   final List<TextInputFormatter>? inputFormat;
   const TextFormComponent(
-      {super.key, required this.controller, this.warning, required this.label, required this.maxL, this.txtInput, this.inputFormat});
+      {super.key, required this.controller, this.warning, required this.label, required this.maxL, this.txtInput, this.inputFormat, this.onSubmit});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class TextFormComponent extends StatelessWidget {
       maxLengthEnforcement: MaxLengthEnforcement.enforced,
       keyboardType: txtInput,
       inputFormatters: inputFormat,
+      onFieldSubmitted: onSubmit,
       validator: (valor) {
         if (valor == null || valor.isEmpty) {
           return warning;
