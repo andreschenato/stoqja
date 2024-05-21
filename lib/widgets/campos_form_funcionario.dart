@@ -39,6 +39,7 @@ class _CamposFormFuncionarioState extends State<CamposFormFuncionario> {
     funcionario.cargo?.dispose();
     funcionario.senha?.dispose();
     funcionario.salario?.dispose();
+    funcionario.dataContrato?.dispose();
     super.dispose();
   }
 

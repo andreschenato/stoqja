@@ -1,6 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:stoque_ja/backend/cadastro_cliente.dart';
 import 'package:stoque_ja/backend/classes/pessoa.dart';
+import 'package:stoque_ja/widgets/text_form_component.dart';
+
+// Classe do cliente, usa a classe pessoa como base
 
 class Cliente extends PessoaEmpresa {
+  late TextEditingController? nomeFantasia;
   Cliente({
     super.nome,
     super.cpfCnpj,
@@ -11,5 +17,37 @@ class Cliente extends PessoaEmpresa {
     super.numEndereco,
     super.complemento,
     super.bairro,
-  });
+    super.idCidade,
+    String? nomeFantasia,
+  }) {
+    this.nomeFantasia = TextEditingController(text: nomeFantasia);
+  }
+
+  Widget campoNomeFantasia(int flex) {
+    return Expanded(
+      flex: flex,
+      child: TextFormComponent(
+        controller: nomeFantasia!,
+        label: "Nome Fantasia",
+        maxL: 200,
+        warning: cpfCnpj!.text.length == 18 ? "Insira o nome fantasia" : null,
+      ),
+    );
+  }
+
+  void createCliente() {
+    cadastroCliente(
+      nome!.text,
+      nomeFantasia!.text,
+      cpfCnpj!.text,
+      telefone!.text,
+      email!.text,
+      endereco!.text,
+      cep!.text,
+      numEndereco!.text,
+      complemento!.text,
+      bairro!.text,
+      idCidade!,
+    );
+  }
 }

@@ -12,9 +12,9 @@ class ButtonsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ButtonStyle screenButton = ButtonStyle(
-      backgroundColor: const MaterialStatePropertyAll<Color>(Color(0XFFFF5002)),
-      foregroundColor: const MaterialStatePropertyAll<Color>(Colors.white),
-      shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+      backgroundColor: const WidgetStatePropertyAll<Color>(Color(0XFFFF5002)),
+      foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
+      shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
         ),

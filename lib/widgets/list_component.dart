@@ -84,9 +84,9 @@ class _ListComponentState extends State<ListComponent> {
           }
         },
         cells: widget.dadosCelulas(tipo),
-        color: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.selected)) {
+        color: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+            if (states.contains(WidgetState.selected)) {
               return Colors.deepOrange.withOpacity(0.8);
             }
             return null;

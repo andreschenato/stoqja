@@ -8,8 +8,6 @@ import 'package:stoque_ja/backend/update_funcionario.dart';
 import 'package:stoque_ja/widgets/date_selector.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
 
-import 'dart:developer' as dev;
-
 class Funcionario extends PessoaEmpresa {
   late TextEditingController? senha;
   late TextEditingController? cargo;
@@ -87,9 +85,6 @@ class Funcionario extends PessoaEmpresa {
         maxL: 12,
         controller: salario!,
         warning: 'Insira o salário',
-        onSubmit: (value) {
-          dev.log(salario!.text);
-        },
         label: 'Salário',
       ),
     );

@@ -38,7 +38,7 @@ class DesktopAppBar extends StatelessWidget implements PreferredSizeWidget{
                 TextButton(
                   style: const ButtonStyle(
                       overlayColor:
-                          MaterialStatePropertyAll<Color>(Colors.transparent)),
+                          WidgetStatePropertyAll<Color>(Colors.transparent)),
                   onPressed: () {
                     Navigator.pushNamed(context, '/');
                   },
