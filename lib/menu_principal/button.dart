@@ -20,7 +20,7 @@ class GridButton extends StatelessWidget {
         ? (textSize = 28, iconSize = 70)
         : (textSize = 36, iconSize = 100);
     final ButtonStyle menuButton = ButtonStyle(
-      shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+      shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),

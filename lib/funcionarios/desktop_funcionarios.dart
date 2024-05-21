@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stoque_ja/backend/delete_funcionario.dart';
 import 'package:stoque_ja/backend/lista_funcionarios.dart';
 import 'package:stoque_ja/widgets/dialog_cadastro_funcionario.dart';
-import 'package:stoque_ja/widgets/buttons_screens.dart';
 import 'package:stoque_ja/widgets/desktop_appbar.dart';
+import 'package:stoque_ja/widgets/function_buttons.dart';
 import 'package:stoque_ja/widgets/list_component.dart';
 
 // Construção da tela funcionários para desktop
@@ -38,58 +38,37 @@ class _DesktopFuncState extends State<DesktopFunc> {
       appBar: DesktopAppBar(usuario),
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ButtonsScreen(
-                icone: Icons.add_box_rounded,
-                texto: 'Novo',
-                onPressed: () async {
-                  final bool? result = await showDialog(
-                    context: context,
-                    builder: (context) => const DialogCadastroFuncionario(),
-                  );
-                  if (result == true) {
-                    _loadFuncList();
-                  }
-                },
-              ),
-              ButtonsScreen(
-                icone: Icons.edit_document,
-                texto: 'Editar',
-                onPressed: () async {
-                  if (selectedId != null) {
-                    final bool? result = await showDialog(
-                      context: context,
-                      builder: (context) => DialogCadastroFuncionario(
-                        idFuncionario: selectedId,
-                      ),
-                    );
-                    if (result == true) {
-                      _loadFuncList();
-                    }
-                  }
-                },
-              ),
-              ButtonsScreen(
-                icone: Icons.delete,
-                texto: 'Excluir',
-                onPressed: () async {
-                  if (selectedId != null) {
-                    await deleteFuncionario(selectedId);
-                    _loadFuncList();
-                  }
-                },
-              ),
-              ButtonsScreen(
-                icone: Icons.close_fullscreen_rounded,
-                texto: 'Fechar',
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
+          FunctionButtons(
+            onPressedNovo: () async {
+              final bool? result = await showDialog(
+                context: context,
+                builder: (context) => const DialogCadastroFuncionario(),
+              );
+              if (result == true) {
+                _loadFuncList();
+              }
+            },
+            onPressedEdit: () async {
+              if (selectedId != null) {
+                final bool? result = await showDialog(
+                  context: context,
+                  builder: (context) => DialogCadastroFuncionario(
+                    idFuncionario: selectedId,
+                  ),
+                );
+                if (result == true) {
+                  _loadFuncList();
+                }
+              }
+            },
+            onPressedDelete: () async {
+              if (selectedId != null) {
+                await deleteFuncionario(selectedId);
+                _loadFuncList();
+              }
+            },
           ),
+          
           Expanded(
             child: ListComponent(
               lista: _funcList,
@@ -110,9 +89,9 @@ class _DesktopFuncState extends State<DesktopFunc> {
               onRowSelected: (selectedData) {
                 final String newSelectedId = selectedData['idFuncionario'];
                 if (newSelectedId != selectedId) {
-                    selectedId = selectedData['idFuncionario'];
+                  selectedId = selectedData['idFuncionario'];
                 } else {
-                    selectedId = null;
+                  selectedId = null;
                 }
               },
             ),
