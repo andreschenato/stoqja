@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/backend/delete_funcionario.dart';
 import 'package:stoque_ja/backend/lista_funcionarios.dart';
-import 'package:stoque_ja/widgets/dialog_cadastro_funcionario.dart';
+import 'package:stoque_ja/widgets/dialog_cadastro.dart';
 import 'package:stoque_ja/widgets/desktop_appbar.dart';
 import 'package:stoque_ja/widgets/function_buttons.dart';
 import 'package:stoque_ja/widgets/list_component.dart';
@@ -42,7 +42,7 @@ class _DesktopFuncState extends State<DesktopFunc> {
             onPressedNovo: () async {
               final bool? result = await showDialog(
                 context: context,
-                builder: (context) => const DialogCadastroFuncionario(),
+                builder: (context) => const DialogCadastro(tipo: 'Funcionario',),
               );
               if (result == true) {
                 _loadFuncList();
@@ -52,7 +52,8 @@ class _DesktopFuncState extends State<DesktopFunc> {
               if (selectedId != null) {
                 final bool? result = await showDialog(
                   context: context,
-                  builder: (context) => DialogCadastroFuncionario(
+                  builder: (context) => DialogCadastro(
+                    tipo: 'Funcionario',
                     idFuncionario: selectedId,
                   ),
                 );

@@ -23,7 +23,7 @@ Future cadastroCliente(
   await conexao.execute(
     "INSERT INTO Pessoa (nome, nomeFantasia, cpfCnpj, telefone,"
     " email, tipo, cep, endereco, numEndereco, complemento, bairro, FK_idCidade)"
-    " VALUES (:nome, :nomeFantasia, :cpfCnpj, :telefone"
+    " VALUES (:nome, :nomeFantasia, :cpfCnpj, :telefone,"
     " :email, :tipo, :cep, :endereco, :numEndereco, :complemento, :bairro, :idCidade)",
     {
       "nome": nome,
@@ -32,8 +32,8 @@ Future cadastroCliente(
       "telefone": telefone,
       "email": email,
       "tipo": "Cliente",
-      "endereco": endereco,
       "cep": cep,
+      "endereco": endereco,
       "numEndereco": numEndereco,
       "complemento": complemento,
       "bairro": bairro,
