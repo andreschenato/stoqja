@@ -63,8 +63,8 @@ abstract class PessoaEmpresa {
           FilteringTextInputFormatter.digitsOnly,
           CpfOuCnpjFormatter(),
         ],
-        warning: 'Insira o CPF',
-        label: 'CPF',
+        warning: 'Insira o CPF ou o CNPJ',
+        label: 'CPF/CNPJ',
       ),
     );
   }

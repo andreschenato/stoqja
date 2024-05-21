@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:stoque_ja/backend/delete_cliente.dart';
 import 'package:stoque_ja/backend/lista_clientes.dart';
-import 'package:stoque_ja/widgets/buttons_screens.dart';
 import 'package:stoque_ja/widgets/desktop_appbar.dart';
+import 'package:stoque_ja/widgets/dialog_cadastro.dart';
+import 'package:stoque_ja/widgets/function_buttons.dart';
 import 'package:stoque_ja/widgets/list_component.dart';
 
 // Construção da tela de clientes para desktop
@@ -15,11 +17,18 @@ class DesktopClientes extends StatefulWidget {
 
 class _DesktopClientesState extends State<DesktopClientes> {
   Future<List<Map<String, dynamic>>>? _clienteList;
+  String? selectedId;
+
+  void _loadCliList() {
+    setState(() {
+      _clienteList = listaClientes();
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    _clienteList = listaClientes();
+    _loadCliList();
   }
 
   @override
@@ -29,32 +38,36 @@ class _DesktopClientesState extends State<DesktopClientes> {
       appBar: DesktopAppBar(usuario),
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ButtonsScreen(
-                icone: Icons.add_box_rounded,
-                texto: 'Novo',
-                onPressed: () {},
-              ),
-              ButtonsScreen(
-                icone: Icons.edit_document,
-                texto: 'Editar',
-                onPressed: () {},
-              ),
-              ButtonsScreen(
-                icone: Icons.delete,
-                texto: 'Excluir',
-                onPressed: () {},
-              ),
-              ButtonsScreen(
-                icone: Icons.close_fullscreen_rounded,
-                texto: 'Fechar',
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
+          FunctionButtons(
+            onPressedNovo: () async {
+              final bool? resultado = await showDialog(
+                context: context,
+                builder: (context) => const DialogCadastro(tipo: 'Cliente',),
+              );
+              if (resultado == true) {
+                _loadCliList();
+              }
+            },
+            onPressedEdit: () async {
+              if (selectedId != null) {
+                final bool? resultado = await showDialog(
+                  context: context,
+                  builder: (context) => DialogCadastro(
+                    tipo: 'Cliente',
+                    idCliente: selectedId,
+                  ),
+                );
+                if (resultado == true) {
+                  _loadCliList();
+                }
+              }
+            },
+            onPressedDelete: () async {
+              if (selectedId != null) {
+                await deleteCliente(selectedId);
+                _loadCliList();
+              }
+            },
           ),
           Expanded(
             child: ListComponent(
@@ -73,6 +86,14 @@ class _DesktopClientesState extends State<DesktopClientes> {
                 DataColumn(label: Text('Telefone')),
                 DataColumn(label: Text('Endereço')),
               ],
+              onRowSelected: (selectedData) {
+                final String newSelectedId = selectedData['idPessoa'];
+                if (newSelectedId != selectedId) {
+                  selectedId = selectedData['idPessoa'];
+                } else {
+                  selectedId = null;
+                }
+              },
             ),
           ),
         ],
