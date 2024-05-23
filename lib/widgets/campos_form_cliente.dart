@@ -48,10 +48,10 @@ class _CamposFormClienteState extends State<CamposFormCliente> {
       formKey: formKey,
       components: [
         SizedBox(
-          height: MediaQuery.of(context).size.height / 2.2,
+          height: MediaQuery.of(context).size.height / 1.3,
           width: MediaQuery.of(context).size.width / 1.2,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
