@@ -58,7 +58,7 @@ $ git clone https://github.com/andreschenato/stoqja.git
 Feito isso você terá uma pasta do projeto na sua máquina.
 
 #### 2. Criando o banco de dados
-Para criar o banco de dados, há no repositório do projeto um script [banco.sql]() que você pode executar com seu SGBD de preferência. 
+Para criar o banco de dados, há no repositório do projeto um script [banco.sql](banco.sql) que você pode executar com seu SGBD de preferência. 
 
 Tudo que você precisa fazer é executar esse script e esperar o SGBD completar a execução. O que ele fará é:
 - Criar as tabelas e as relações entre elas;
@@ -84,7 +84,7 @@ class DBVar {
 }
 ```
 
-Com isso feito, você está pronto para editar o software do seu jeito ou prosseguir com a [build]().
+Com isso feito, você está pronto para editar o software do seu jeito ou prosseguir com a [build](#4-fazendo-a-build-do-projeto).
 
 #### 4. Fazendo a build do projeto
 **ATENÇÃO:** Para que a build para Android funcione, você precisa configurar o banco de dados para um endereço ip que o dispositivo possa ter acesso, caso contrário, o aplicativo não irá ser capaz de acessar o banco de dados!
