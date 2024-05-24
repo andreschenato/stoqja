@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/campos_form_cliente.dart';
+import 'package:stoque_ja/widgets/campos_form_fornecedor.dart';
 import 'package:stoque_ja/widgets/campos_form_funcionario.dart';
 import 'package:stoque_ja/widgets/campos_form_produto.dart';
 
@@ -8,6 +9,7 @@ import 'package:stoque_ja/widgets/campos_form_produto.dart';
 class DialogCadastro extends StatelessWidget {
   final String tipo;
   final String? idFuncionario;
+  final String? idFornecedor;
   final String? idCliente;
   final String? idProduto;
   const DialogCadastro({
@@ -16,6 +18,7 @@ class DialogCadastro extends StatelessWidget {
     this.idCliente,
     this.idProduto,
     required this.tipo,
+    this.idFornecedor,
   });
 
   Widget caminho(String type) {
@@ -24,7 +27,9 @@ class DialogCadastro extends StatelessWidget {
           idFuncionario: idFuncionario,
         ),
       'Cliente' => CamposFormCliente(idCliente: idCliente),
+      'Fornecedor' => CamposFormFornecedor(idFornecedor: idFornecedor),
       'Produto' => CamposFormProduto(idProduto: idProduto),
+
       _ => const SizedBox(),
     };
   }

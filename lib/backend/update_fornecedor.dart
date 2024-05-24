@@ -1,9 +1,9 @@
 import 'package:stoque_ja/database/db_config.dart';
 
-// Função que usa os dados para atualizar um cadastro de cliente
+// Função que usa os dados para atualizar um cadastro de fornecedor
 
-Future editCliente(
-  String idCliente,
+Future editFornecedor(
+  String idFornecedor,
   String nome,
   String nomeFantasia,
   String cpfCnpj,
@@ -24,7 +24,7 @@ Future editCliente(
     "telefone = '$telefone', email = '$email', endereco = '$endereco' "
     "cep = '$cep', numEndereco = '$numEndereco', complemento = '$complemento' "
     "bairro = '$bairro', FK_idCidade = '$idCidade' "
-    "WHERE idPessoa = '$idCliente' AND tipo = 'Cliente'"
+    "WHERE idPessoa = '$idFornecedor' AND tipo = 'Fornecedor'"
   );
   await conexao.close();
 }
