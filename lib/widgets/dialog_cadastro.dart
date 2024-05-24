@@ -23,13 +23,10 @@ class DialogCadastro extends StatelessWidget {
 
   Widget caminho(String type) {
     return switch (type) {
-      'Funcionario' => CamposFormFuncionario(
-          idFuncionario: idFuncionario,
-        ),
+      'Funcionario' => CamposFormFuncionario(idFuncionario: idFuncionario),
       'Cliente' => CamposFormCliente(idCliente: idCliente),
       'Fornecedor' => CamposFormFornecedor(idFornecedor: idFornecedor),
       'Produto' => CamposFormProduto(idProduto: idProduto),
-
       _ => const SizedBox(),
     };
   }

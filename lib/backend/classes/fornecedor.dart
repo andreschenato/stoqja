@@ -36,7 +36,7 @@ class Fornecedor extends PessoaEmpresa {
     );
   }
 
-  void selectForn25(String idFornecedor) async {
+  void selectForn(String idFornecedor) async {
     Map<String, dynamic> fornecedor = await selectFornecedor(idFornecedor);
     nome?.text = fornecedor['nome'];
     nomeFantasia?.text = fornecedor['nomeFantasia'];
