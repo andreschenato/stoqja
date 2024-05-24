@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // Widget que cria uma appBar para desktop
 
-class DesktopAppBar extends StatelessWidget implements PreferredSizeWidget{
+class DesktopAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DesktopAppBar(String usuario, {super.key});
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -37,8 +37,9 @@ class DesktopAppBar extends StatelessWidget implements PreferredSizeWidget{
               children: [
                 TextButton(
                   style: const ButtonStyle(
-                      overlayColor:
-                          WidgetStatePropertyAll<Color>(Colors.transparent)),
+                    overlayColor:
+                        WidgetStatePropertyAll<Color>(Colors.transparent),
+                  ),
                   onPressed: () {
                     Navigator.pushNamed(context, '/');
                   },

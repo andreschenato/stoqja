@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stoque_ja/theme/button_theme.dart';
 
 // Widget dos botões que define o tema e requisita 
 // ícones, a função quando pressionado e o texto
@@ -11,22 +12,13 @@ class ButtonsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle screenButton = ButtonStyle(
-      backgroundColor: const WidgetStatePropertyAll<Color>(Color(0XFFFF5002)),
-      foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
-      shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6),
-        ),
-      ),
-    );
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: SizedBox(
           height: 45,
           child: ElevatedButton.icon(
-            style: screenButton,
+            style: buttonTheme,
             onPressed: onPressed,
             icon: Icon(icone),
             label: Text(texto),

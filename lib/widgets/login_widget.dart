@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stoque_ja/login/user_select.dart';
 import 'package:stoque_ja/backend/valida_login.dart';
 import 'package:stoque_ja/rotas/routes.dart';
+import 'package:stoque_ja/theme/button_theme.dart';
+import 'package:stoque_ja/widgets/text_form_component.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -32,33 +34,21 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
     return Container(
       constraints: const BoxConstraints(
         maxHeight: 300,
         maxWidth: 600,
-        minHeight: 100,
-        minWidth: 300,
       ),
       width: MediaQuery.of(context).size.width / 2,
       height: MediaQuery.of(context).size.height / 2,
       padding: const EdgeInsets.all(30.0),
-      decoration: BoxDecoration(
-        color: theme.brightness == Brightness.dark
-            ? colorScheme.surface
-            : const Color.fromARGB(255, 198, 198, 198),
-        borderRadius: const BorderRadius.all(Radius.circular(40)),
-      ),
       child: Column(
         children: [
           Container(
             constraints: const BoxConstraints(
               maxWidth: 1000,
-              minWidth: 200,
             ),
-            height: 55,
+            height: 50,
             child: UserSelect(onUserSelected: (selectedUser) {
               setState(() {
                 usuario = selectedUser;
@@ -66,46 +56,30 @@ class _LoginWidgetState extends State<LoginWidget> {
             }),
           ),
           const SizedBox(height: 25),
-          SizedBox(
-            height: 55,
-            child: TextField(
+          Container(
+            alignment: Alignment.center,
+            height: 50,
+            child: TextFormComponent(
               controller: senha,
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: 'Digite sua senha',
-                labelText: 'Senha',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
+              label: 'Senha',
+              isSenha: true,
+              onEnter: () async {
+                bool? isValid;
+                isValid = await validaLogin(usuario.toString(), senha.text);
+                redirect(isValid);
+              },
             ),
           ),
           const SizedBox(height: 25.0),
           Container(
             constraints: const BoxConstraints(
-              maxHeight: 70,
+              maxHeight: 60,
               maxWidth: 1000,
-              minHeight: 60,
-              minWidth: 200,
             ),
             height: double.infinity,
             width: double.infinity,
             child: ElevatedButton(
-              style: ButtonStyle(
-                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                backgroundColor: WidgetStateProperty.resolveWith<Color>(
-                  (Set<WidgetState> states) {
-                    if (states.contains(WidgetState.disabled)) {
-                      return colorScheme.onSurface.withOpacity(0.12);
-                    }
-                    return colorScheme.primary;
-                  },
-                ),
-              ),
+              style: buttonTheme,
               onPressed: () async {
                 bool? isValid;
                 isValid = await validaLogin(usuario.toString(), senha.text);
@@ -115,9 +89,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                 'Login',
                 style: TextStyle(
                   fontSize: 40,
-                  color: theme.brightness == Brightness.dark
-                      ? colorScheme.onPrimary
-                      : colorScheme.onSurface,
                 ),
               ),
             ),
