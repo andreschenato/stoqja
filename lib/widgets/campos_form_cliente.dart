@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/backend/classes/cliente.dart';
+import 'package:stoque_ja/theme/button_theme.dart';
 import 'package:stoque_ja/widgets/form_cadastro.dart';
 
 class CamposFormCliente extends StatefulWidget {
@@ -95,6 +96,7 @@ class _CamposFormClienteState extends State<CamposFormCliente> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   ElevatedButton(
+                    style: buttonTheme,
                     onPressed: () {
                       Navigator.of(context).pop(false);
                     },
@@ -104,6 +106,7 @@ class _CamposFormClienteState extends State<CamposFormCliente> {
                     width: 25,
                   ),
                   ElevatedButton(
+                    style: buttonTheme,
                     onPressed: () {
                       if (widget.idCliente != null) {
                         if (formKey.currentState!.validate()) {

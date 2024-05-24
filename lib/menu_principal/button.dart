@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stoque_ja/theme/button_theme.dart';
 
 // Criação do widget do botão usado nos botões do menu
 
@@ -19,17 +20,8 @@ class GridButton extends StatelessWidget {
     MediaQuery.of(context).size.width < 650
         ? (textSize = 28, iconSize = 70)
         : (textSize = 36, iconSize = 100);
-    final ButtonStyle menuButton = ButtonStyle(
-      foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
-      backgroundColor: const WidgetStatePropertyAll<Color>(Colors.deepOrange),
-      shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
-    );
     return ElevatedButton(
-      style: menuButton,
+      style: buttonTheme,
       onPressed: onPressed,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/backend/classes/funcionario.dart';
+import 'package:stoque_ja/theme/button_theme.dart';
 import 'package:stoque_ja/widgets/form_cadastro.dart';
 
 // Componentes do formulário do funcionário
@@ -120,6 +121,7 @@ class _CamposFormFuncionarioState extends State<CamposFormFuncionario> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             ElevatedButton(
+              style: buttonTheme,
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
@@ -129,6 +131,7 @@ class _CamposFormFuncionarioState extends State<CamposFormFuncionario> {
               width: 25,
             ),
             ElevatedButton(
+              style: buttonTheme,
               onPressed: () {
                 if (widget.idFuncionario != null) {
                   if (formKey.currentState!.validate()) {
