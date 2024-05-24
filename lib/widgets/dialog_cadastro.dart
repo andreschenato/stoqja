@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/campos_form_cliente.dart';
 import 'package:stoque_ja/widgets/campos_form_funcionario.dart';
+import 'package:stoque_ja/widgets/campos_form_produto.dart';
 
 // Dialog de cadastro do funcionário, implementa o formulario de cadastro
 
@@ -8,10 +9,12 @@ class DialogCadastro extends StatelessWidget {
   final String tipo;
   final String? idFuncionario;
   final String? idCliente;
+  final String? idProduto;
   const DialogCadastro({
     super.key,
     this.idFuncionario,
     this.idCliente,
+    this.idProduto,
     required this.tipo,
   });
 
@@ -21,6 +24,7 @@ class DialogCadastro extends StatelessWidget {
           idFuncionario: idFuncionario,
         ),
       'Cliente' => CamposFormCliente(idCliente: idCliente),
+      'Produto' => CamposFormProduto(idProduto: idProduto),
       _ => const SizedBox(),
     };
   }
