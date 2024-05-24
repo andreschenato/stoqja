@@ -88,8 +88,7 @@ class _DesktopProdutosState extends State<DesktopProdutos> {
                 DataColumn(label: Text('Nome')),
                 DataColumn(label: Text('Tipo')),
                 DataColumn(label: Text('Valor')),
-                DataColumn(label: Text('observação')),
-                DataColumn(label: Text('categoria')),
+                DataColumn(label: Text('Observação')),
                 DataColumn(label: Text('Quantidade')),
               ],
               onRowSelected: (selectedData) {

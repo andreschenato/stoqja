@@ -1,6 +1,6 @@
 import 'package:stoque_ja/database/db_config.dart';
 
-// Função para deletar um funcionário do banco de dados
+// Função para deletar um produto do banco de dados
 
 Future deleteProduto(selectedId) async{
   var conexao = await MySqlDBConfiguration().connection;

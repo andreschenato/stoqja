@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/widgets/campos_form_cliente.dart';
-import 'package:stoque_ja/widgets/campos_form_fornecedor.dart';
-import 'package:stoque_ja/widgets/campos_form_funcionario.dart';
-import 'package:stoque_ja/widgets/campos_form_produto.dart';
+import 'package:stoque_ja/widgets/campos_forms/campos_form_cliente.dart';
+import 'package:stoque_ja/widgets/campos_forms/campos_form_fornecedor.dart';
+import 'package:stoque_ja/widgets/campos_forms/campos_form_funcionario.dart';
+import 'package:stoque_ja/widgets/campos_forms/campos_form_produto.dart';
 
 // Dialog de cadastro do funcionário, implementa o formulario de cadastro
 
