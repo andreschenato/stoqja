@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
-import 'package:stoque_ja/backend/cadastro_produto.dart';
-import 'package:stoque_ja/backend/select_produtos.dart';
-import 'package:stoque_ja/backend/update_produto.dart';
+import 'package:stoque_ja/backend/operations/create/cadastro_produto.dart';
+import 'package:stoque_ja/backend/operations/select/select_produtos.dart';
+import 'package:stoque_ja/backend/operations/update/update_produto.dart';
 
 class Produto {
   late TextEditingController? nomeProduto;

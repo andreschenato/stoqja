@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/backend/cadastro_fornecedor.dart';
+import 'package:stoque_ja/backend/operations/create/cadastro_fornecedor.dart';
 import 'package:stoque_ja/backend/classes/pessoa.dart';
-import 'package:stoque_ja/backend/select_fornecedor.dart';
-import 'package:stoque_ja/backend/update_fornecedor.dart';
+import 'package:stoque_ja/backend/operations/select/select_fornecedor.dart';
+import 'package:stoque_ja/backend/operations/update/update_fornecedor.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
 
 // Classe do fornecedor, usa a superclasse pessoa como base

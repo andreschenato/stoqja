@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/backend/lista_funcionarios.dart';
+import 'package:stoque_ja/backend/operations/lista/lista_funcionarios.dart';
 import 'package:stoque_ja/widgets/buttons_screens.dart';
 import 'package:stoque_ja/widgets/drawer_component.dart';
 import 'package:stoque_ja/widgets/list_component.dart';
