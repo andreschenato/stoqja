@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
-import 'package:stoque_ja/backend/cadastro_produto.dart';
-import 'package:stoque_ja/backend/select_produtos.dart';
-import 'package:stoque_ja/backend/update_produto.dart';
+import 'package:stoque_ja/backend/operations/create/cadastro_produto.dart';
+import 'package:stoque_ja/backend/operations/select/select_produtos.dart';
+import 'package:stoque_ja/backend/operations/update/update_produto.dart';
 
 class Produto {
   late TextEditingController? nomeProduto;
@@ -81,10 +81,10 @@ class Produto {
     return Expanded(
       flex: flex,
       child: TextFormComponent(
-        maxL: 5,
+        maxL: 7,
         controller: valor!,
         warning: 'Insira o valor do produto',
-        label: 'valor do Produto',
+        label: 'Valor do Produto',
       ),
     );
   }
@@ -99,7 +99,7 @@ class Produto {
           FilteringTextInputFormatter.digitsOnly,
         ],
         warning: 'Insira a quantidade',
-        label: 'quantidade',
+        label: 'Quantidade',
       ),
     );
   }
@@ -119,10 +119,10 @@ class Produto {
       idProduto,
       nomeProduto!.text,
       tipo!.text,
-      valor!.text as double,
+      valor!.text,
       observacao!.text,
       categoria!.text,
-      quantidade!.text as int,
+      quantidade!.text,
     );
   }
 
@@ -130,10 +130,10 @@ class Produto {
     cadastroProduto(
       nomeProduto!.text,
       tipo!.text,
-      valor!.text as double?,
+      valor!.text,
       observacao!.text,
       categoria!.text,
-      quantidade!.text as int?,
+      quantidade!.text,
     );
   }
 }

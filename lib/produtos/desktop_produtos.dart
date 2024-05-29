@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/widgets/desktop_appbar.dart';
-import 'package:stoque_ja/backend/lista_produtos.dart';
+import 'package:stoque_ja/backend/operations/lista/lista_produtos.dart';
 import 'package:stoque_ja/widgets/dialog_cadastro.dart';
 import 'package:stoque_ja/widgets/function_buttons.dart';
 import 'package:stoque_ja/widgets/list_component.dart';
-import 'package:stoque_ja/backend/delete_produto.dart';
+import 'package:stoque_ja/backend/operations/delete/delete_produto.dart';
 
 
 // Construção da tela de produtos para desktop
@@ -88,8 +88,7 @@ class _DesktopProdutosState extends State<DesktopProdutos> {
                 DataColumn(label: Text('Nome')),
                 DataColumn(label: Text('Tipo')),
                 DataColumn(label: Text('Valor')),
-                DataColumn(label: Text('observação')),
-                DataColumn(label: Text('categoria')),
+                DataColumn(label: Text('Observação')),
                 DataColumn(label: Text('Quantidade')),
               ],
               onRowSelected: (selectedData) {

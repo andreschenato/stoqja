@@ -8,10 +8,10 @@ import 'package:stoque_ja/database/db_config.dart';
 Future cadastroProduto(
   String? nomeProduto,
     String? tipo,
-    double? valor,
+    String? valor,
     String? observacao,
     String? categoria,
-    int? quantidade
+    String? quantidade
 ) async {
   var conexao = await MySqlDBConfiguration().connection;
   await conexao.connect();

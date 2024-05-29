@@ -62,7 +62,6 @@ class _CamposFormProdutoState extends State<CamposFormProduto> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Spacer(),
             produto.campoCategoria(3),
             const Spacer(),
             produto.campoValor(3),

@@ -1,10 +1,10 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:stoque_ja/backend/cadastro_funcionario.dart';
+import 'package:stoque_ja/backend/operations/create/cadastro_funcionario.dart';
 import 'package:stoque_ja/backend/classes/pessoa.dart';
-import 'package:stoque_ja/backend/select_funcionario.dart';
-import 'package:stoque_ja/backend/update_funcionario.dart';
+import 'package:stoque_ja/backend/operations/select/select_funcionario.dart';
+import 'package:stoque_ja/backend/operations/update/update_funcionario.dart';
 import 'package:stoque_ja/widgets/date_selector.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
 

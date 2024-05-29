@@ -12,5 +12,6 @@ Future userList() async {
     Map data = row.assoc();
     users.add('${data['nome']}');
   }
+  await conexao.close();
   return users;
 }

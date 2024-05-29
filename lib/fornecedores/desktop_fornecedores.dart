@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/backend/delete_fornecedor.dart';
-import 'package:stoque_ja/backend/lista_fornecedor.dart';
+import 'package:stoque_ja/backend/operations/delete/delete_fornecedor.dart';
+import 'package:stoque_ja/backend/operations/lista/lista_fornecedor.dart';
 import 'package:stoque_ja/widgets/desktop_appbar.dart';
 import 'package:stoque_ja/widgets/dialog_cadastro.dart';
 import 'package:stoque_ja/widgets/function_buttons.dart';

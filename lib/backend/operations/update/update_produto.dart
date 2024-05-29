@@ -6,10 +6,10 @@ Future editProduto(
   String idProduto,
   String nomeProduto,
   String tipo,
-  double valorController,
+  String valorController,
   String observacao,
   String categoria,
-  int quantidadeController,
+  String quantidadeController,
 ) async {
   var conexao = await MySqlDBConfiguration().connection;
   await conexao.connect();

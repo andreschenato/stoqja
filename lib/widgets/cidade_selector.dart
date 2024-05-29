@@ -1,6 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/backend/lista_cidades.dart';
+import 'package:stoque_ja/backend/operations/lista/lista_cidades.dart';
 
 /* Widget que permite fazer a seleção de cidade
 no formulário de cadastro dos usuários */

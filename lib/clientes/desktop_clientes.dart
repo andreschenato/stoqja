@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/backend/delete_cliente.dart';
-import 'package:stoque_ja/backend/lista_clientes.dart';
+import 'package:stoque_ja/backend/operations/delete/delete_cliente.dart';
+import 'package:stoque_ja/backend/operations/lista/lista_clientes.dart';
 import 'package:stoque_ja/widgets/desktop_appbar.dart';
 import 'package:stoque_ja/widgets/dialog_cadastro.dart';
 import 'package:stoque_ja/widgets/function_buttons.dart';
