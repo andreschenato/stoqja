@@ -9,10 +9,9 @@ class DesktopMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String usuario = ModalRoute.of(context)?.settings.arguments as String;
-    return Scaffold(
-      appBar: DesktopAppBar(usuario),
-      body: const Padding(
+    return const Scaffold(
+      appBar: DesktopAppBar(),
+      body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,

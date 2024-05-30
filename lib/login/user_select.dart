@@ -1,12 +1,13 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/login/user_list.dart';
+import 'package:stoque_ja/backend/operations/lista/lista_funcionarios.dart';
 
 /* Widget seletor de usuário usado na tela de login
 Recebe dados do banco pela função userList */
 
 class UserSelect extends StatefulWidget {
-  final void Function(String?)? onUserSelected;
+  final void Function(Map<String, dynamic>?)? onUserSelected;
+
   const UserSelect({super.key, this.onUserSelected});
 
   @override
@@ -14,69 +15,73 @@ class UserSelect extends StatefulWidget {
 }
 
 class _UserSelectState extends State<UserSelect> {
-  Future? _userList;
-  String? _selectedUser;
-
-  String? get selectedUser => _selectedUser;
+  Future<List<Map<String, dynamic>>>? _userList;
+  Map<String, dynamic>? _selectedUser;
 
   @override
   void initState() {
     super.initState();
-    _userList = userList();
+    _userList = listaFuncionarios();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(
-        maxHeight: 70,
-        maxWidth: 1000,
-        minHeight: 60,
-        minWidth: 200,
-      ),
-      height: double.infinity,
-      width: double.infinity,
-      child: FutureBuilder(
+    // Container(
+    //   constraints: const BoxConstraints(
+    //     maxHeight: 70,
+    //     maxWidth: 1000,
+    //     minHeight: 60,
+    //     minWidth: 200,
+    //   ),
+    //   height: double.infinity,
+    //   width: double.infinity,
+    //   child: 
+    return FutureBuilder<List<Map<String, dynamic>>>(
         future: _userList,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
-              List<String> userList = snapshot.data;
-              return DropdownButtonFormField2<String>(
+              List<Map<String, dynamic>> funciList = snapshot.data!;
+              return DropdownButtonFormField2<Map<String, dynamic>>(
                 isExpanded: true,
-                dropdownStyleData: DropdownStyleData(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8)
-                  )
+                dropdownStyleData: const DropdownStyleData(
+                  maxHeight: 200,
                 ),
-                decoration: InputDecoration(
-                  label: const Text('Usuário'),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)),
+                 decoration: InputDecoration(
+                labelText: 'Usuário',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
                 ),
+              ),
                 hint: const Text("Selecione seu usuário"),
                 value: _selectedUser,
-                onChanged: (String? value) {
+                onChanged: (Map<String, dynamic>? value) {
                   setState(() {
                     _selectedUser = value!;
                     widget.onUserSelected?.call(_selectedUser);
                   });
                 },
-                items: userList.map((String value) {
-                  return DropdownMenuItem(
-                    value: value,
-                    child: Text(value),
+                items: funciList.map((Map<String, dynamic> user) {
+                  return DropdownMenuItem<Map<String, dynamic>>(
+                    value: user,
+                    child: Text('${user['idFuncionario']} - ${user['nome']}'),
                   );
                 }).toList(),
+                validator: (Map<String, dynamic>? value) {
+                if (value == null) {
+                  return "Insira o usuário";
+                }
+                return null;
+              },
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               );
             }
           } else {
             return const Center(child: CircularProgressIndicator());
           }
         },
-      ),
-    );
+      );
   }
 }

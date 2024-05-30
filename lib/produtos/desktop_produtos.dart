@@ -34,9 +34,8 @@ class _DesktopProdutosState extends State<DesktopProdutos> {
 
   @override
   Widget build(BuildContext context) {
-    final String usuario = ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
-      appBar: DesktopAppBar(usuario),
+      appBar: const DesktopAppBar(),
       body: Column(
         children: [
           FunctionButtons(

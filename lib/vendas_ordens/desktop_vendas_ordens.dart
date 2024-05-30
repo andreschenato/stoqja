@@ -15,9 +15,8 @@ class DesktopVendasOrdens extends StatefulWidget {
 class _DesktopVendasOrdensState extends State<DesktopVendasOrdens> {
   @override
   Widget build(BuildContext context) {
-    final String usuario = ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
-      appBar: DesktopAppBar(usuario),
+      appBar: const DesktopAppBar(),
       body: Column(
         children: [
           FunctionButtons(
