@@ -7,7 +7,7 @@ Future<bool> validaLogin(String usuario, String senha) async {
   var conexao = await MySqlDBConfiguration().connection;
   await conexao.connect();
   var query =
-      await conexao.execute("SELECT senha From Funcionario WHERE nome = '$usuario';");
+      await conexao.execute("SELECT senha From Funcionario WHERE idFuncionario = '$usuario';");
   String? senhaServer;
   for (var row in query.rows) {
     Map data = row.assoc();

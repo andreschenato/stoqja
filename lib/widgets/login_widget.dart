@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stoque_ja/login/user_select.dart';
 import 'package:stoque_ja/backend/operations/valida_login.dart';
 import 'package:stoque_ja/rotas/routes.dart';
 import 'package:stoque_ja/theme/button_theme.dart';
+import 'package:stoque_ja/widgets/logged_user.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -13,12 +15,14 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
+  String? idUsuario;
   String? usuario;
+  String? cargo;
   final senha = TextEditingController();
 
   void redirect(bool isValid) {
     isValid
-        ? Navigator.pushNamed(context, Rota.menu, arguments: usuario.toString())
+        ? Navigator.pushNamed(context, Rota.menu, arguments: idUsuario.toString())
         : ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Usuário ou senha inválidos'),
@@ -50,8 +54,10 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             height: 50,
             child: UserSelect(onUserSelected: (selectedUser) {
+              final login = context.read<LoggedUser>();
+              login.logUser(selectedUser!['nome'], selectedUser['cargo']);
               setState(() {
-                usuario = selectedUser;
+                idUsuario = selectedUser['idFuncionario'];
               });
             }),
           ),
@@ -65,7 +71,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               isSenha: true,
               onEnter: () async {
                 bool? isValid;
-                isValid = await validaLogin(usuario.toString(), senha.text);
+                isValid = await validaLogin(idUsuario.toString(), senha.text);
                 redirect(isValid);
               },
             ),
@@ -82,7 +88,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               style: buttonTheme,
               onPressed: () async {
                 bool? isValid;
-                isValid = await validaLogin(usuario.toString(), senha.text);
+                isValid = await validaLogin(idUsuario.toString(), senha.text);
                 redirect(isValid);
               },
               child: Text(

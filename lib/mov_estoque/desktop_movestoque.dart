@@ -13,9 +13,8 @@ class DesktopMovEstoque extends StatefulWidget {
 class _DesktopMovEstoqueState extends State<DesktopMovEstoque> {
   @override
   Widget build(BuildContext context) {
-    final String usuario = ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
-      appBar: DesktopAppBar(usuario),
+      appBar: const DesktopAppBar(),
     );
   }
 }

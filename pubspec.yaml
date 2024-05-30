@@ -41,6 +41,7 @@ dependencies:
   dropdown_button2: ^2.3.9
   super_sliver_list: ^0.4.1
   brasil_fields: ^1.14.3
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
