@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:stoque_ja/backend/classes/movEstoque.dart';
 import 'package:stoque_ja/backend/operations/delete/delete_movEstoque.dart';
 import 'package:stoque_ja/backend/operations/lista/lista_movEstoque.dart';
-import 'package:stoque_ja/backend/operations/lista/lista_produtos.dart';
 import 'package:stoque_ja/widgets/desktop_appbar.dart';
 import 'package:stoque_ja/widgets/dialog_cadastro.dart';
 import 'package:stoque_ja/widgets/function_buttons.dart';
@@ -19,12 +18,22 @@ class DesktopMovEstoque extends StatefulWidget {
 
 class _DesktopMovEstoqueState extends State<DesktopMovEstoque> {
   Future<List<Map<String, dynamic>>>? _prodMovEstoque;
-  Future<List<Map<String, dynamic>>>? _prodList;
   String? selectedId;
 
-  void _loadProdMovEstoque() {
+  void _loadprodMovEstoque() {
     setState(() {
       _prodMovEstoque = listaMovEstoque();
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadprodMovEstoque();
+  }
+
+  /* void _loadProdList() {
+    setState(() {
       _prodList = listaProdutos();
     });
   }
@@ -32,9 +41,9 @@ class _DesktopMovEstoqueState extends State<DesktopMovEstoque> {
   @override
   void initState() {
     super.initState();
-    _loadProdMovEstoque;
+    _loadProdList();
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +59,7 @@ class _DesktopMovEstoqueState extends State<DesktopMovEstoque> {
                 ),
               );
               if (resultado == true) {
-                _loadProdMovEstoque();
+                _loadprodMovEstoque();
               }
             },
             onPressedEdit: () async {
@@ -63,83 +72,40 @@ class _DesktopMovEstoqueState extends State<DesktopMovEstoque> {
                   ),
                 );
                 if (resultado == true) {
-                  _loadProdMovEstoque();
+                  _loadprodMovEstoque();
                 }
               }
             },
             onPressedDelete: () async {
               if (selectedId != null) {
                 await deleteMovEstoque(selectedId);
-                _loadProdMovEstoque();
+                _loadprodMovEstoque();
               }
             },
           ),
           Expanded(
-            child: FutureBuilder<List<Map<String, dynamic>>>(
-              future: _prodMovEstoque,
-              builder: (context, movEstoqueSnapshot) {
-                if (movEstoqueSnapshot.connectionState ==
-                    ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                } else if (movEstoqueSnapshot.hasError) {
-                  return const Center(
-                      child: Text(
-                          'Erro ao carregar dados de movimentação de estoque'));
+            child: ListComponent(
+              lista: _prodMovEstoque,
+              dadosCelulas: (Map<String, dynamic> produto) {
+                return [
+                  DataCell(Text(produto['idProduto'])),
+                  DataCell(Text(produto['Nome'])),
+                  //DataCell(Text(movEstoque['Tipo'])),
+                  // DataCell(Text(movEstoque['descrição'])),
+                ];
+              },
+              dadosColuna: const [
+                DataColumn(label: Text('ID')),
+                DataColumn(label: Text('Nome do produto')),
+                DataColumn(label: Text('Tipo')),
+                DataColumn(label: Text('Descrição')),
+              ],
+              onRowSelected: (selectedData) {
+                final String newSelectedId = selectedData['idProduto'];
+                if (newSelectedId != selectedId) {
+                  selectedId = selectedData['IdProduto'];
                 } else {
-                  final List<Map<String, dynamic>> prodMovEstoque =
-                      movEstoqueSnapshot.data ?? [];
-                  return FutureBuilder<List<Map<String, dynamic>>>(
-                    future: _prodList,
-                    builder: (context, prodListSnapshot) {
-                      if (prodListSnapshot.connectionState ==
-                          ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (prodListSnapshot.hasError) {
-                        return const Center(
-                            child: Text('Erro ao carregar dados dos produtos'));
-                      } else {
-                        final List<Map<String, dynamic>> prodListData =
-                            prodListSnapshot.data ?? [];
-                        final Map<String, Map<String, dynamic>> prodList = {
-                          for (var prod in prodListData) prod['idProduto']: prod
-                        };
-
-                        return ListComponent(
-                          lista: _prodMovEstoque,
-                          dadosCelulas: (Map<String, dynamic> movEstoque) {
-                            final String idProduto = movEstoque['idProduto'];
-                            final Map<String, dynamic> produto =
-                                prodList[idProduto] ?? {'Nome': 'Desconhecido'};
-                            return [
-                              DataCell(Text(movEstoque['idProduto'])),
-                              DataCell(Text(produto['Nome'])),
-                              DataCell(Text(movEstoque['Tipo'])),
-                              DataCell(Text(movEstoque['descrição'])),
-                            ];
-                          },
-                          dadosColuna: const [
-                            DataColumn(label: Text('ID')),
-                            DataColumn(label: Text('Nome do produto')),
-                            DataColumn(label: Text('Tipo')),
-                            DataColumn(label: Text('Descrição')),
-                          ],
-                          onRowSelected: (selectedData) {
-                            final String newSelectedId =
-                                selectedData['idProduto'];
-                            if (newSelectedId != selectedId) {
-                              setState(() {
-                                selectedId = newSelectedId;
-                              });
-                            } else {
-                              setState(() {
-                                selectedId = null;
-                              });
-                            }
-                          },
-                        );
-                      }
-                    },
-                  );
+                  selectedId = null;
                 }
               },
             ),
