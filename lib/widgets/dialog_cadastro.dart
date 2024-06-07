@@ -14,23 +14,17 @@ class DialogCadastro extends StatelessWidget {
   final String? idFornecedor;
   final String? idCliente;
   final String? idProduto;
-<<<<<<< HEAD
   final String? idVenda;
-=======
   final String? idMovEstoque;
->>>>>>> a3e6669c256001558087f1e1e559d272f027e65d
   const DialogCadastro({
     super.key,
     this.idFuncionario,
     this.idCliente,
     this.idProduto,
     required this.tipo,
-<<<<<<< HEAD
-    this.idFornecedor, this.idVenda,
-=======
     this.idFornecedor,
     this.idMovEstoque,
->>>>>>> a3e6669c256001558087f1e1e559d272f027e65d
+    this.idVenda,
   });
 
   Widget caminho(String type) {
@@ -39,11 +33,8 @@ class DialogCadastro extends StatelessWidget {
       'Cliente' => CamposFormCliente(idCliente: idCliente),
       'Fornecedor' => CamposFormFornecedor(idFornecedor: idFornecedor),
       'Produto' => CamposFormProduto(idProduto: idProduto),
-<<<<<<< HEAD
       'Vendas' => CamposFormVendas(idVenda: idVenda),
-=======
       'MovEstoque' => CamposFormMovEstoque(idMovEstoque: idMovEstoque),
->>>>>>> a3e6669c256001558087f1e1e559d272f027e65d
       _ => const SizedBox(),
     };
   }
