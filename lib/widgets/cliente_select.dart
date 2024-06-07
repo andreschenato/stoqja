@@ -1,67 +1,67 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/backend/operations/lista/lista_funcionarios.dart';
+import 'package:stoque_ja/backend/operations/lista/lista_clientes.dart';
 
-/* Widget seletor de usuário usado na tela de login
-Recebe dados do banco pela função userList */
+/* Widget seletor de cliente usado na tela de vendas
+Recebe dados do banco pela função listaClientes */
 
-class UserSelect extends StatefulWidget {
-  final void Function(Map<String, dynamic>?)? onUserSelected;
+class ClienteSelect extends StatefulWidget {
+  final void Function(Map<String, dynamic>?)? onClienteSelected;
 
-  const UserSelect({super.key, this.onUserSelected});
+  const ClienteSelect({super.key, this.onClienteSelected});
 
   @override
-  State<UserSelect> createState() => _UserSelectState();
+  State<ClienteSelect> createState() => _UserSelectState();
 }
 
-class _UserSelectState extends State<UserSelect> {
-  Future<List<Map<String, dynamic>>>? _userList;
+class _UserSelectState extends State<ClienteSelect> {
+  Future<List<Map<String, dynamic>>>? _clienteList;
   Map<String, dynamic>? _selectedUser;
 
   @override
   void initState() {
     super.initState();
-    _userList = listaFuncionarios();
+    _clienteList = listaClientes();
   }
 
   @override
   Widget build(BuildContext context) { 
     return FutureBuilder<List<Map<String, dynamic>>>(
-        future: _userList,
+        future: _clienteList,
         builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
-              List<Map<String, dynamic>> funciList = snapshot.data!;
+              List<Map<String, dynamic>> clienList = snapshot.data!;
               return DropdownButtonFormField2<Map<String, dynamic>>(
                 isExpanded: true,
                 dropdownStyleData: const DropdownStyleData(
                   maxHeight: 200,
                 ),
                  decoration: InputDecoration(
-                labelText: 'Usuário',
+                labelText: 'Cliente',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-                hint: const Text("Selecione seu usuário"),
+                hint: const Text("Selecione o cliente"),
                 value: _selectedUser,
                 onChanged: (Map<String, dynamic>? value) {
                   setState(() {
                     _selectedUser = value!;
-                    widget.onUserSelected?.call(_selectedUser);
+                    widget.onClienteSelected?.call(_selectedUser);
                   });
                 },
-                items: funciList.map((Map<String, dynamic> user) {
+                items: clienList.map((Map<String, dynamic> user) {
                   return DropdownMenuItem<Map<String, dynamic>>(
                     value: user,
-                    child: Text('${user['idFuncionario']} - ${user['nome']}'),
+                    child: Text('${user['idPessoa']} - ${user['nome']}'),
                   );
                 }).toList(),
                 validator: (Map<String, dynamic>? value) {
                 if (value == null) {
-                  return "Insira o usuário";
+                  return "Insira o cliente";
                 }
                 return null;
               },

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:stoque_ja/backend/classes/produto.dart';
 import 'package:stoque_ja/widgets/form_cadastro.dart';
 
-// Componentes do formulário do funcionário
+// Componentes do formulário do produto
 
 class CamposFormProduto extends StatefulWidget {
   final String? idProduto;

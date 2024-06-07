@@ -6,6 +6,7 @@ import 'package:stoque_ja/backend/classes/pessoa.dart';
 import 'package:stoque_ja/backend/operations/select/select_funcionario.dart';
 import 'package:stoque_ja/backend/operations/update/update_funcionario.dart';
 import 'package:stoque_ja/widgets/date_selector.dart';
+import 'package:stoque_ja/widgets/senha_form_field.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
 
 class Funcionario extends PessoaEmpresa {
@@ -57,7 +58,7 @@ class Funcionario extends PessoaEmpresa {
   Widget campoSenha(int flex) {
     return Expanded(
       flex: flex,
-      child: TextFormComponent(
+      child: SenhaFormComponent(
         maxL: 25,
         controller: senha!,
         warning: 'Insira a senha',

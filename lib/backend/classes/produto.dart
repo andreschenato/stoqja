@@ -29,6 +29,10 @@ class Produto {
     this.quantidade = TextEditingController(text: quantidade);
   }
 
+  double getValorProduto() {
+    return double.tryParse(valor?.text ?? '0') ?? 0;
+  }
+
   Widget campoNomeProduto(int flex) {
     return Expanded(
       flex: flex,
@@ -104,7 +108,7 @@ class Produto {
     );
   }
 
-  void selectProd(String idProduto) async {
+  Future<void> selectProd(String idProduto) async {
     Map<String, dynamic> produto= await selectProduto(idProduto);
     nomeProduto?.text = produto['nomeProduto'];
     tipo?.text = produto['tipo'];

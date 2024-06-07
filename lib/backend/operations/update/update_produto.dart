@@ -1,6 +1,6 @@
 import 'package:stoque_ja/database/db_config.dart';
 
-// Função que recebe os dados do funcionário e atualiza no banco
+// Função que recebe os dados do produto e atualiza no banco
 
 Future editProduto(
   String idProduto,
@@ -13,8 +13,8 @@ Future editProduto(
 ) async {
   var conexao = await MySqlDBConfiguration().connection;
   await conexao.connect();
-  await conexao.execute("UPDATE Produto SET nome = '$nomeProduto', valor = '$valorController', observacao = '$observacao',"
-  " categoria = '$categoria', quantidade = '$quantidadeController'"
+  await conexao.execute("UPDATE Produto SET nomeProduto = '$nomeProduto', valor = '$valorController', observacao = '$observacao',"
+  " categoria = '$categoria', tipo = '$tipo', quantidade = '$quantidadeController'"
   " WHERE idProduto = '$idProduto'");
   await conexao.close();
 }

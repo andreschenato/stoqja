@@ -5,7 +5,7 @@ import 'package:stoque_ja/backend/operations/valida_login.dart';
 import 'package:stoque_ja/rotas/routes.dart';
 import 'package:stoque_ja/theme/button_theme.dart';
 import 'package:stoque_ja/widgets/logged_user.dart';
-import 'package:stoque_ja/widgets/text_form_component.dart';
+import 'package:stoque_ja/widgets/senha_form_field.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -16,8 +16,6 @@ class LoginWidget extends StatefulWidget {
 
 class _LoginWidgetState extends State<LoginWidget> {
   String? idUsuario;
-  String? usuario;
-  String? cargo;
   final senha = TextEditingController();
 
   void redirect(bool isValid) {
@@ -55,7 +53,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             height: 50,
             child: UserSelect(onUserSelected: (selectedUser) {
               final login = context.read<LoggedUser>();
-              login.logUser(selectedUser!['nome'], selectedUser['cargo']);
+              login.logUser(selectedUser!['idFuncionario'], selectedUser['nome'], selectedUser['cargo']);
               setState(() {
                 idUsuario = selectedUser['idFuncionario'];
               });
@@ -65,10 +63,9 @@ class _LoginWidgetState extends State<LoginWidget> {
           Container(
             alignment: Alignment.center,
             height: 50,
-            child: TextFormComponent(
+            child: SenhaFormComponent(
               controller: senha,
               label: 'Senha',
-              isSenha: true,
               onEnter: () async {
                 bool? isValid;
                 isValid = await validaLogin(idUsuario.toString(), senha.text);
@@ -91,11 +88,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                 isValid = await validaLogin(idUsuario.toString(), senha.text);
                 redirect(isValid);
               },
-              child: Text(
+              child: const Text(
                 'Login',
-                style: TextStyle(
-                  fontSize: 40,
-                ),
+                textScaler: TextScaler.linear(3),
               ),
             ),
           ),
