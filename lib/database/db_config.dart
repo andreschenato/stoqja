@@ -1,5 +1,5 @@
 import 'package:mysql_client/mysql_client.dart';
-import 'package:stoque_ja/database/db_variables_exemple.dart';
+import 'package:stoque_ja/database/db_variables.dart';
 
 // Classe abstrata para configuração da conexão com o banco
 
