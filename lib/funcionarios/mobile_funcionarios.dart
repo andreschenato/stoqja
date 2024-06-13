@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:stoque_ja/backend/operations/delete/delete_funcionario.dart';
 import 'package:stoque_ja/backend/operations/lista/lista_funcionarios.dart';
-import 'package:stoque_ja/widgets/buttons_screens.dart';
+import 'package:stoque_ja/widgets/custom_app_bar.dart';
+import 'package:stoque_ja/widgets/dialog_cadastro.dart';
 import 'package:stoque_ja/widgets/drawer_component.dart';
+import 'package:stoque_ja/widgets/function_buttons.dart';
 import 'package:stoque_ja/widgets/list_component.dart';
-import 'package:stoque_ja/widgets/mobile_appbar.dart';
 
 // Construção da tela funcionários para mobile
 
@@ -15,6 +17,14 @@ class MobileFunc extends StatefulWidget {
 
 class _MobileFuncState extends State<MobileFunc> {
   Future<List<Map<String, dynamic>>>? _funcList;
+  String? selectedId;
+
+  void _loadFuncList() {
+    setState(() {
+      _funcList = listaFuncionarios();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -23,59 +33,130 @@ class _MobileFuncState extends State<MobileFunc> {
 
   @override
   Widget build(BuildContext context) {
-    final String usuario = ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       drawer: const DrawerComponent(
         tela: 'Funcionarios',
       ),
-      appBar: MobileAppbar(usuario),
-      body: Column(
+      appBar: const CustomAppBar(),
+      body: Wrap(
+        direction: Axis.horizontal,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ButtonsScreen(
-                icone: Icons.add_box,
-                texto: 'Novo',
-                onPressed: () {},
+              SizedBox(
+                height: 65,
+                width: MediaQuery.of(context).size.width,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 1.5,
+                      child: FunctionButtons(
+                        onPressedNovo: () async {
+                          final bool? result = await showDialog(
+                            context: context,
+                            builder: (context) => const DialogCadastro(
+                              tipo: 'Funcionario',
+                            ),
+                          );
+                          if (result == true) {
+                            _loadFuncList();
+                          }
+                        },
+                        onPressedEdit: () async {
+                          if (selectedId != null) {
+                            final bool? result = await showDialog(
+                              context: context,
+                              builder: (context) => DialogCadastro(
+                                tipo: 'Funcionario',
+                                idFuncionario: selectedId,
+                              ),
+                            );
+                            if (result == true) {
+                              _loadFuncList();
+                            }
+                          }
+                        },
+                        onPressedDelete: () async {
+                          if (selectedId != null) {
+                            await deleteFuncionario(selectedId);
+                            _loadFuncList();
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              ButtonsScreen(
-                icone: Icons.edit_document,
-                texto: 'Editar',
-                onPressed: () {},
-              ),
-              ButtonsScreen(
-                icone: Icons.delete,
-                texto: 'Excluir',
-                onPressed: () {},
-              ),
-              ButtonsScreen(
-                icone: Icons.close_fullscreen_rounded,
-                texto: 'Fechar',
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              )
             ],
           ),
-          Expanded(
-            child: ListComponent(
-              lista: _funcList,
-              dadosCelulas: (Map<String, dynamic> funcionario) {
-                return [
-                  DataCell(Text(funcionario['idFuncionario'])),
-                  DataCell(Text(funcionario['nome'])),
-                  DataCell(Text(funcionario['cargo'])),
-                  DataCell(Text(funcionario['telefone'])),
-                ];
-              },
-              dadosColuna: const [
-                DataColumn(label: Text('ID')),
-                DataColumn(label: Text('Nome')),
-                DataColumn(label: Text('Cargo')),
-                DataColumn(label: Text('Telefone')),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: (MediaQuery.of(context).size.height -
+                        (kToolbarHeight * 2) - 48),
+                width: MediaQuery.of(context).size.width,
+                child: ListComponent(
+                  lista: _funcList,
+                  dadosCelulas: (Map<String, dynamic> funcionario) {
+                    return [
+                      DataCell(
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 50,
+                          child: Text(funcionario['idFuncionario']),
+                        ),
+                      ),
+                      DataCell(
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 8,
+                          child: Text(
+                            overflow: TextOverflow.ellipsis,
+                            funcionario['nome'],
+                            textScaler: const TextScaler.linear(0.95),
+                          ),
+                        ),
+                      ),
+                      DataCell(
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 8,
+                          child: Text(
+                            overflow: TextOverflow.ellipsis,
+                            funcionario['cargo'],
+                            textScaler: const TextScaler.linear(0.95),
+                          ),
+                        ),
+                      ),
+                      DataCell(
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 4,
+                          child: Text(
+                            funcionario['telefone'],
+                            textScaler: const TextScaler.linear(0.9),
+                          ),
+                        ),
+                      ),
+                    ];
+                  },
+                  dadosColuna: const [
+                    DataColumn(label: Text('ID')),
+                    DataColumn(label: Text('Nome')),
+                    DataColumn(label: Text('Cargo')),
+                    DataColumn(label: Text('Telefone')),
+                  ],
+                  onRowSelected: (selectedData) {
+                    final String newSelectedId = selectedData['idFuncionario'];
+                    if (newSelectedId != selectedId) {
+                      selectedId = selectedData['idFuncionario'];
+                    } else {
+                      selectedId = null;
+                    }
+                  },
+                ),
+              ),
+            ],
           ),
         ],
       ),

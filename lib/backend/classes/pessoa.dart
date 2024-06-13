@@ -45,6 +45,7 @@ abstract class PessoaEmpresa {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: nome!,
         warning: 'Insira o nome',
         label: 'Nome',
@@ -58,6 +59,7 @@ abstract class PessoaEmpresa {
       child: TextFormComponent(
         txtInput: TextInputType.number,
         maxL: 18,
+        maxLines: 1,
         controller: cpfCnpj!,
         inputFormat: [
           FilteringTextInputFormatter.digitsOnly,
@@ -79,6 +81,7 @@ abstract class PessoaEmpresa {
           TelefoneInputFormatter(),
         ],
         maxL: 15,
+        maxLines: 1,
         controller: telefone!,
         warning: 'Insira o telefone',
         label: 'Telefone',
@@ -92,6 +95,7 @@ abstract class PessoaEmpresa {
       child: TextFormComponent(
         txtInput: TextInputType.emailAddress,
         maxL: 100,
+        maxLines: 1,
         controller: email!,
         label: 'Email',
       ),
@@ -103,6 +107,7 @@ abstract class PessoaEmpresa {
       flex: flex,
       child: TextFormComponent(
         maxL: 300,
+        maxLines: 1,
         controller: endereco!,
         warning: 'Insira o endereço',
         label: 'Endereço',
@@ -120,6 +125,7 @@ abstract class PessoaEmpresa {
           CepInputFormatter(ponto: false),
         ],
         maxL: 9,
+        maxLines: 1,
         controller: cep!,
         warning: 'Insira o CEP',
         label: 'CEP',
@@ -132,6 +138,7 @@ abstract class PessoaEmpresa {
       flex: flex,
       child: TextFormComponent(
         maxL: 10,
+        maxLines: 1,
         controller: numEndereco!,
         warning: 'Insira o número',
         label: 'Número',
@@ -144,6 +151,7 @@ abstract class PessoaEmpresa {
       flex: flex,
       child: TextFormComponent(
         maxL: 500,
+        maxLines: 1,
         controller: complemento!,
         label: 'Complemento',
       ),
@@ -155,6 +163,7 @@ abstract class PessoaEmpresa {
       flex: flex,
       child: TextFormComponent(
         maxL: 300,
+        maxLines: 1,
         controller: bairro!,
         warning: 'Insira o bairro',
         label: 'Bairro',

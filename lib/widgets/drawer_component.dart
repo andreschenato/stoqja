@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stoque_ja/rotas/routes.dart';
+import 'package:stoque_ja/widgets/logged_user.dart';
 
 // Drawer usado nas telas mobile para facilitar a navegação
 
@@ -11,14 +14,44 @@ class DrawerComponent extends StatelessWidget {
     final String usuario = ModalRoute.of(context)?.settings.arguments as String;
     return Drawer(
       child: ListView(
+        padding: const EdgeInsets.only(top: 0),
         children: [
           SizedBox(
-            height: 100,
+            height: MediaQuery.of(context).size.height / 6,
             child: DrawerHeader(
               decoration: const BoxDecoration(
-                color: Colors.orange,
+                color: Color.fromRGBO(255, 117, 0, 1),
               ),
-              child: Text(usuario),
+              child: Consumer<LoggedUser>(
+                builder: (context, value, child) {
+                  return Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            value.username.toString(),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            value.cargo.toString(),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
           ListTile(
@@ -33,7 +66,7 @@ class DrawerComponent extends StatelessWidget {
             ),
             selected: selectedIndex == 'Menu',
             onTap: () {
-              Navigator.pushNamed(context, '/Menu', arguments: usuario);
+              Navigator.pushNamed(context, Rota.menu, arguments: usuario);
             },
           ),
           ListTile(
@@ -48,7 +81,7 @@ class DrawerComponent extends StatelessWidget {
             ),
             selected: selectedIndex == 'Produtos',
             onTap: () {
-              Navigator.pushNamed(context, '/Produtos', arguments: usuario);
+              Navigator.pushNamed(context, Rota.produto, arguments: usuario);
             },
           ),
           ListTile(
@@ -63,7 +96,7 @@ class DrawerComponent extends StatelessWidget {
             ),
             selected: selectedIndex == 'Funcionarios',
             onTap: () {
-              Navigator.pushNamed(context, '/Funcionarios', arguments: usuario);
+              Navigator.pushNamed(context, Rota.funcionario, arguments: usuario);
             },
           ),
           ListTile(
@@ -78,7 +111,7 @@ class DrawerComponent extends StatelessWidget {
             ),
             selected: selectedIndex == 'MovEstoque',
             onTap: () {
-              Navigator.pushNamed(context, '/MovEstoque', arguments: usuario);
+              Navigator.pushNamed(context, Rota.estoque, arguments: usuario);
             },
           ),
           ListTile(
@@ -93,7 +126,7 @@ class DrawerComponent extends StatelessWidget {
             ),
             selected: selectedIndex == 'Clientes',
             onTap: () {
-              Navigator.pushNamed(context, '/Clientes', arguments: usuario);
+              Navigator.pushNamed(context, Rota.cliente, arguments: usuario);
             },
           ),
           ListTile(
@@ -108,7 +141,7 @@ class DrawerComponent extends StatelessWidget {
             ),
             selected: selectedIndex == 'VendasOrdens',
             onTap: () {
-              Navigator.pushNamed(context, '/VendasOrdens', arguments: usuario);
+              Navigator.pushNamed(context, Rota.venda, arguments: usuario);
             },
           ),
           ListTile(
@@ -123,7 +156,22 @@ class DrawerComponent extends StatelessWidget {
             ),
             selected: selectedIndex == 'Fornecedores',
             onTap: () {
-              Navigator.pushNamed(context, '/Fornecedores', arguments: usuario);
+              Navigator.pushNamed(context, Rota.fornecedor, arguments: usuario);
+            },
+          ),
+          ListTile(
+            title: const Row(
+              children: [
+                Icon(Icons.exit_to_app_rounded),
+                SizedBox(
+                  width: 10,
+                ),
+                Text("Sair"),
+              ],
+            ),
+            selected: selectedIndex == 'Login',
+            onTap: () {
+              Navigator.pushNamed(context, Rota.login, arguments: usuario);
             },
           ),
         ],

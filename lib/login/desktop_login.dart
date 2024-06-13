@@ -8,7 +8,9 @@ class DesktopLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -19,10 +21,14 @@ class DesktopLogin extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height / 2,
                 width: MediaQuery.of(context).size.width / 1.5,
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    LoginWidget(),
+                    Image(
+                      height: size.height / 10,
+                      image: const AssetImage('assets/imagens/stoq.png'),
+                    ),
+                    const LoginWidget(),
                   ],
                 ),
               ),
@@ -43,7 +49,8 @@ class DesktopLogin extends StatelessWidget {
                         fit: BoxFit.cover,
                         clipBehavior: Clip.hardEdge,
                         child: Image(
-                          image: AssetImage('assets/imagens/HomiNoTelefone.png'),
+                          image:
+                              AssetImage('assets/imagens/HomiNoTelefone.png'),
                         ),
                       ),
                     ),

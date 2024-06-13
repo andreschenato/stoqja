@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/backend/operations/delete/delete_fornecedor.dart';
 import 'package:stoque_ja/backend/operations/lista/lista_fornecedor.dart';
-import 'package:stoque_ja/widgets/desktop_appbar.dart';
+import 'package:stoque_ja/widgets/custom_app_bar.dart';
 import 'package:stoque_ja/widgets/dialog_cadastro.dart';
 import 'package:stoque_ja/widgets/function_buttons.dart';
 import 'package:stoque_ja/widgets/list_component.dart';
@@ -34,7 +34,7 @@ class _DesktopFornecedorState extends State<DesktopFornecedor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const DesktopAppBar(),
+        appBar: const CustomAppBar(),
         body: Column(
           children: [
             FunctionButtons(

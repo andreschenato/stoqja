@@ -44,6 +44,7 @@ class Funcionario extends PessoaEmpresa {
       child: TextFormComponent(
         txtInput: TextInputType.number,
         maxL: 14,
+        maxLines: 1,
         controller: cpfCnpj!,
         inputFormat: [
           FilteringTextInputFormatter.digitsOnly,
@@ -72,6 +73,7 @@ class Funcionario extends PessoaEmpresa {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: cargo!,
         warning: 'Insira o cargo',
         label: 'Cargo',
@@ -84,6 +86,7 @@ class Funcionario extends PessoaEmpresa {
       flex: flex,
       child: TextFormComponent(
         maxL: 12,
+        maxLines: 1,
         controller: salario!,
         warning: 'Insira o salário',
         label: 'Salário',
@@ -95,7 +98,7 @@ class Funcionario extends PessoaEmpresa {
     return Expanded(
       flex: flex,
       child: SizedBox(
-        height: 70,
+        height: 80,
         child: DateSelector(
           controller: dataContrato!,
           label: "Data de contratação",

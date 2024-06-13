@@ -38,6 +38,7 @@ class Produto {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: nomeProduto!,
         warning: 'Insira o nome do produto',
         label: 'Nome do Produto',
@@ -50,9 +51,10 @@ class Produto {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: tipo!,
         warning: 'Insira o tipo',
-        label: 'tipo do Produto',
+        label: 'Tipo',
       ),
     );
   }
@@ -62,9 +64,10 @@ class Produto {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: observacao!,
         warning: 'Insira a obs',
-        label: 'observação',
+        label: 'Observação',
       ),
     );
   }
@@ -74,9 +77,10 @@ class Produto {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: categoria!,
         warning: 'Insira a categoria',
-        label: 'categoria do Produto',
+        label: 'Categoria',
       ),
     );
   }
@@ -86,9 +90,10 @@ class Produto {
       flex: flex,
       child: TextFormComponent(
         maxL: 7,
+        maxLines: 1,
         controller: valor!,
         warning: 'Insira o valor do produto',
-        label: 'Valor do Produto',
+        label: 'Valor',
       ),
     );
   }
@@ -98,6 +103,7 @@ class Produto {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: quantidade!,
         inputFormat: [
           FilteringTextInputFormatter.digitsOnly,

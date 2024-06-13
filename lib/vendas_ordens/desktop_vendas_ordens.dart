@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stoque_ja/backend/operations/create_carrinho.dart';
-import 'package:stoque_ja/widgets/desktop_appbar.dart';
+import 'package:stoque_ja/widgets/custom_app_bar.dart';
 import 'package:stoque_ja/widgets/dialog_cadastro.dart';
 import 'package:stoque_ja/widgets/function_buttons.dart';
 import 'package:stoque_ja/widgets/logged_user.dart';
@@ -20,7 +20,7 @@ class _DesktopVendasOrdensState extends State<DesktopVendasOrdens> {
   Widget build(BuildContext context) {
     return Consumer<LoggedUser>(
       builder: (context, value, child) => Scaffold(
-        appBar: const DesktopAppBar(),
+        appBar: const CustomAppBar(),
         body: Column(
           children: [
             FunctionButtons(

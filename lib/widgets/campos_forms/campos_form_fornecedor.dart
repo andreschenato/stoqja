@@ -15,6 +15,7 @@ class CamposFormFornecedor extends StatefulWidget {
 
 class _CamposFormFornecedorState extends State<CamposFormFornecedor> {
   late Fornecedor fornecedor;
+  static final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -39,21 +40,145 @@ class _CamposFormFornecedorState extends State<CamposFormFornecedor> {
     fornecedor.bairro?.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
+    bool isMobile = MediaQuery.of(context).size.width < 650 ? true : false;
     String labelBotao;
-    widget.idFornecedor != null? labelBotao = 'Salvar' : labelBotao = 'Cadastrar';
+    widget.idFornecedor != null
+        ? labelBotao = 'Salvar'
+        : labelBotao = 'Cadastrar';
     return FormCadastro(
       formKey: formKey,
-      components: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height / 1.3,
-          width: MediaQuery.of(context).size.width / 1.2,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
+      components: isMobile
+          ? [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  fornecedor.campoNome(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  fornecedor.campoNomeFantasia(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  fornecedor.campoCpfCnpj(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  fornecedor.campoEmail(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  fornecedor.campoTelefone(6),
+                  const Spacer(),
+                  fornecedor.campoCep(4),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  fornecedor.campoEndereco(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  fornecedor.campoNumEndereco(4),
+                  const Spacer(),
+                  fornecedor.campoBairro(6),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  fornecedor.campoIdCidade(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  fornecedor.campoComplemento(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    style: buttonTheme,
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                    },
+                    child: const Text('Cancelar'),
+                  ),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  ElevatedButton(
+                    style: buttonTheme,
+                    onPressed: () {
+                      if (widget.idFornecedor != null) {
+                        if (formKey.currentState!.validate()) {
+                          fornecedor.updateFornecedor(widget.idFornecedor!);
+                          Timer(
+                            const Duration(seconds: 1),
+                            () {
+                              Navigator.of(context).pop(true);
+                            },
+                          );
+                        }
+                      } else if (formKey.currentState!.validate()) {
+                        fornecedor.createFornecedor();
+                        Timer(
+                          const Duration(seconds: 1),
+                          () {
+                            Navigator.of(context).pop(true);
+                          },
+                        );
+                      }
+                    },
+                    child: Text(labelBotao),
+                  ),
+                ],
+              ),
+            ]
+          : [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -61,6 +186,9 @@ class _CamposFormFornecedorState extends State<CamposFormFornecedor> {
                   const Spacer(),
                   fornecedor.campoNomeFantasia(5),
                 ],
+              ),
+              const SizedBox(
+                height: 25,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -72,6 +200,9 @@ class _CamposFormFornecedorState extends State<CamposFormFornecedor> {
                   fornecedor.campoEmail(4),
                 ],
               ),
+              const SizedBox(
+                height: 25,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -82,6 +213,9 @@ class _CamposFormFornecedorState extends State<CamposFormFornecedor> {
                   fornecedor.campoNumEndereco(2),
                 ],
               ),
+              const SizedBox(
+                height: 25,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -91,6 +225,9 @@ class _CamposFormFornecedorState extends State<CamposFormFornecedor> {
                   const Spacer(),
                   fornecedor.campoComplemento(4),
                 ],
+              ),
+              const SizedBox(
+                height: 25,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -133,9 +270,6 @@ class _CamposFormFornecedorState extends State<CamposFormFornecedor> {
                 ],
               ),
             ],
-          ),
-        ),
-      ],
     );
   }
 }
