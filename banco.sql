@@ -8,7 +8,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema stoqja
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `stoqja` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `stoqja`;
+USE `stoqja` ;
+
 -- -----------------------------------------------------
 -- Table `stoqja`.`Cidades`
 -- -----------------------------------------------------
@@ -90,8 +91,11 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Carrinho` (
   `valorTotal` FLOAT NOT NULL,
   `FK_idFuncionario` INT NOT NULL,
   `FK_idPessoa` INT NOT NULL,
+  `status` VARCHAR(40) NOT NULL,
+  `codigo` INT NOT NULL,
   PRIMARY KEY (`idCarrinho`),
   UNIQUE INDEX `idCarrinho_UNIQUE` (`idCarrinho` ASC) VISIBLE,
+  UNIQUE INDEX `codigo_UNIQUE` (`codigo` ASC) VISIBLE,
   INDEX `FK_CarrinhoFuncionario_idx` (`FK_idFuncionario` ASC) VISIBLE,
   INDEX `fk_Carrinho_Pessoa1_idx` (`FK_idPessoa` ASC) VISIBLE,
   CONSTRAINT `FK_Carrinho_Funcionario`
@@ -109,10 +113,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `stoqja`.`Produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stoqja`.`Produto` (
-  `idProduto` INT NOT NULL,
+  `idProduto` INT NOT NULL AUTO_INCREMENT,
   `tipo` VARCHAR(50) NOT NULL,
   `nomeProduto` VARCHAR(200) NOT NULL,
-  `valor` DECIMAL(5,2) NOT NULL,
+  `valor` DECIMAL(7,2) NOT NULL,
   `observacao` VARCHAR(4000) NULL DEFAULT NULL,
   `categoria` VARCHAR(45) NOT NULL,
   `quantidade` INT NOT NULL,
@@ -127,12 +131,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `stoqja`.`ItensVenda`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stoqja`.`ItensVenda` (
-  `idItensVenda` INT UNSIGNED NOT NULL,
+  `idItensVenda` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `quantidade` INT NOT NULL,
-  `laudo` VARCHAR(4000) NULL DEFAULT NULL,
-  `descricao` VARCHAR(4000) NULL DEFAULT NULL,
   `FK_idProduto` INT NOT NULL,
   `FK_idCarrinho` INT NOT NULL,
+  `valorItens` DECIMAL(12,2) NOT NULL,
   PRIMARY KEY (`idItensVenda`),
   INDEX `FK_ItensVenda_Carrinho_idx` (`FK_idCarrinho` ASC) VISIBLE,
   INDEX `FK_ItensVenda_Produto_idx` (`FK_idProduto` ASC) VISIBLE,
@@ -152,7 +155,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stoqja`.`MovEstoque` (
   `idMovEstoque` INT NOT NULL AUTO_INCREMENT,
-  `descrição` VARCHAR(4000) NULL DEFAULT NULL,
+  `descricao` VARCHAR(4000) NULL DEFAULT NULL,
   `FK_idProduto` INT NOT NULL,
   `tipo` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`idMovEstoque`),
@@ -160,6 +163,27 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`MovEstoque` (
   CONSTRAINT `FK_MovEstoque_Produto`
     FOREIGN KEY (`FK_idProduto`)
     REFERENCES `stoqja`.`Produto` (`idProduto`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `stoqja`.`OrdemServico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `stoqja`.`OrdemServico` (
+  `idOrdem` INT NOT NULL AUTO_INCREMENT,
+  `FK_idCarrinho` INT NOT NULL,
+  `laudo` VARCHAR(4000) NULL DEFAULT NULL,
+  `descricao` VARCHAR(4000) NULL DEFAULT NULL,
+  PRIMARY KEY (`idOrdem`),
+  UNIQUE INDEX `idOrdem_UNIQUE` (`idOrdem` ASC) VISIBLE,
+  INDEX `FK_OrdemServico_Carrinho_idx` (`FK_idCarrinho` ASC) VISIBLE,
+  CONSTRAINT `FK_OrdemServico_Carrinho`
+    FOREIGN KEY (`FK_idCarrinho`)
+    REFERENCES `stoqja`.`Carrinho` (`idCarrinho`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
