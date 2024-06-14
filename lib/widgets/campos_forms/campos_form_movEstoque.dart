@@ -28,7 +28,6 @@ class _CamposFormMovEstoqueState extends State<CamposFormMovEstoque> {
   @override
   void dispose() {
     movEstoque.descricao?.dispose();
-    movEstoque.tipo?.dispose();
     super.dispose();
   }
 
@@ -47,7 +46,9 @@ class _CamposFormMovEstoqueState extends State<CamposFormMovEstoque> {
           children: [
             movEstoque.campoTipo(70),
             const Spacer(flex: 20),
-            movEstoque.campoDescricao(350),
+            movEstoque.campoDescricao(150),
+            const Spacer(flex: 20),
+            movEstoque.campoProduto(70)
           ],
         ),
         const SizedBox(

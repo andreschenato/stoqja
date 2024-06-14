@@ -8,17 +8,17 @@ import 'package:stoque_ja/database/db_config.dart';
 Future cadastroMovEstoque(
   String? descricao,
   String? tipo,
-  //String? idProduto,
+  String? idProduto,
 ) async {
   var conexao = await MySqlDBConfiguration().connection;
   await conexao.connect();
   await conexao.execute(
-    "INSERT INTO MovEstoque (tipo, descricao,)" //FK_idProduto
-    " VALUES ( :tipo, :descricao)", //:idProduto
+    "INSERT INTO MovEstoque (tipo, descricao, FK_idProduto)" 
+    " VALUES ( :tipo, :descricao, :idProduto)", 
     {
       "tipo": tipo,
       "descricao": descricao,
-      // "idProduto": idProduto,
+      "idProduto": idProduto,
     },
   );
   await conexao.close();

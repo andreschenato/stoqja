@@ -4,13 +4,14 @@ import 'package:stoque_ja/database/db_config.dart';
 
 Future editMovEstoque(
   String idMovEstoque,
-  String tipo,
   String descricao,
+  String idProduto,
+  String tipo,
 ) async {
   var conexao = await MySqlDBConfiguration().connection;
   await conexao.connect();
   await conexao
-      .execute("UPDATE MovEstoque SET descrição = '$descricao', tipo = '$tipo' "
+      .execute("UPDATE MovEstoque SET descricao = '$descricao', tipo = '$tipo', FK_idProduto = '$idProduto' "
           " WHERE idMovEstoque = '$idMovEstoque'");
   await conexao.close();
 }

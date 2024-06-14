@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/backend/classes/movEstoque.dart';
 import 'package:stoque_ja/backend/operations/delete/delete_movEstoque.dart';
 import 'package:stoque_ja/backend/operations/lista/lista_movEstoque.dart';
 import 'package:stoque_ja/widgets/custom_app_bar.dart';
@@ -86,24 +85,24 @@ class _DesktopMovEstoqueState extends State<DesktopMovEstoque> {
           Expanded(
             child: ListComponent(
               lista: _prodMovEstoque,
-              dadosCelulas: (Map<String, dynamic> produto) {
+              dadosCelulas: (Map<String, dynamic> movEstoque) {
                 return [
-                  DataCell(Text(produto['idProduto'])),
-                  DataCell(Text(produto['Nome'])),
-                  //DataCell(Text(movEstoque['Tipo'])),
-                  // DataCell(Text(movEstoque['descrição'])),
+                  DataCell(Text(movEstoque['idMovEstoque'])),
+                  DataCell(Text(movEstoque['descricao'])),
+                  DataCell(Text(movEstoque['nomeProduto'])),
+                  DataCell(Text(movEstoque['tipo'])),
                 ];
               },
               dadosColuna: const [
                 DataColumn(label: Text('ID')),
-                DataColumn(label: Text('Nome do produto')),
-                DataColumn(label: Text('Tipo')),
-                DataColumn(label: Text('Descrição')),
+                DataColumn(label: Text('Descrição')),               
+                DataColumn(label: Text('Nome do Produto')),
+                DataColumn(label: Text('tipo')),
               ],
               onRowSelected: (selectedData) {
-                final String newSelectedId = selectedData['idProduto'];
+                final String newSelectedId = selectedData['idMovEstoque'];
                 if (newSelectedId != selectedId) {
-                  selectedId = selectedData['IdProduto'];
+                  selectedId = selectedData['idMovEstoque'];
                 } else {
                   selectedId = null;
                 }
