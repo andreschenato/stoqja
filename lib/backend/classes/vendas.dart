@@ -1,16 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:stoque_ja/backend/operations/create/cadastro_itens_venda.dart';
+import 'package:stoque_ja/backend/operations/select/select_venda.dart';
+import 'package:stoque_ja/backend/operations/update/update_venda.dart';
 import 'package:stoque_ja/login/user_select.dart';
 import 'package:stoque_ja/widgets/cliente_select.dart';
-import 'package:stoque_ja/widgets/itens_venda.dart';
+import 'package:stoque_ja/widgets/status_selector.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
 
 class VendasOrdens {
   late String? cliente;
   late String? funcionario;
-  late int? valorTotal;
+  late String? valorTotal;
   late String? status;
-  late String? produto;
   late TextEditingController? quantidade;
   late TextEditingController? valorItens;
   late TextEditingController? laudo;
@@ -21,7 +25,6 @@ class VendasOrdens {
     this.funcionario,
     this.status,
     this.valorTotal,
-    this.produto,
     String? quantidade,
     String? laudo,
     String? descricao,
@@ -52,6 +55,17 @@ class VendasOrdens {
     );
   }
 
+  Widget campoStatus(int flex) {
+    return Expanded(
+      flex: flex,
+      child: StatusSelector(
+        onChanged: (String? newValue) {
+          status = newValue!;
+        },
+      ),
+    );
+  }
+
   Widget campoCliente(int flex) {
     return Expanded(
       flex: flex,
@@ -60,13 +74,6 @@ class VendasOrdens {
           cliente = selectedCliente!['idPessoa'];
         },
       ),
-    );
-  }
-
-  Widget campoItensVenda() {
-    return const Expanded(
-      flex: 10,
-      child: ItensVenda(),
     );
   }
 
@@ -120,6 +127,37 @@ class VendasOrdens {
         hint: 'Insira aqui a resolução do problema',
         txtInput: TextInputType.multiline,
       ),
+    );
+  }
+
+  void selecionaVenda(String idVenda) async {
+    Map<String, dynamic> venda = await selectVenda(idVenda);
+    valorTotal = venda['valorTotal'];
+    status = venda['status'];
+    venda['laudo'] != null ? laudo?.text = venda['laudo'] : laudo?.text = '';
+    venda['descricao'] != null
+        ? descricao?.text = venda['descricao']
+        : descricao?.text = '';
+  }
+
+  Future<void> criaItem(String idVenda, String idProduto) async {
+    cadastroItensVenda(
+      idProduto,
+      idVenda,
+      quantidade?.text,
+      valorItens?.text,
+    );
+  }
+
+  void updateVenda(String idVenda) {
+    editVenda(
+      idVenda,
+      valorTotal!,
+      funcionario!,
+      cliente!,
+      descricao!.text,
+      laudo!.text,
+      status!,
     );
   }
 }

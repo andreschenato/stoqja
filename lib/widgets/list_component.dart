@@ -47,7 +47,10 @@ class _ListComponentState extends State<ListComponent> {
                   delegate: SliverChildListDelegate(
                     <Widget>[
                       DataTable(
-                        columnSpacing: MediaQuery.of(context).size.width / 10,
+                        dataTextStyle: const TextStyle(
+                          overflow: TextOverflow.ellipsis
+                        ),
+                        columnSpacing: MediaQuery.of(context).size.width / 20,
                         border: TableBorder.all(
                           width: 1.5,
                           color: Colors.black,

@@ -26,7 +26,7 @@ Future createCarrinho(idFunc) async {
       "total": 0,
       "idFunc": idFunc,
       "idPessoa": 1,
-      "status": '',
+      "status": 'Em andamento',
       "codigo": cod,
     },
   );

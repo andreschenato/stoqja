@@ -1,14 +1,15 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/backend/classes/produto.dart';
 import 'package:stoque_ja/backend/classes/vendas.dart';
 import 'package:stoque_ja/backend/operations/lista/lista_produtos.dart';
+import 'package:stoque_ja/theme/button_theme.dart';
+import 'package:stoque_ja/widgets/form_cadastro.dart';
 import 'package:stoque_ja/widgets/list_component.dart';
-import 'package:stoque_ja/widgets/text_form_component.dart';
 
 class DialogPesquisaProduto extends StatefulWidget {
-  const DialogPesquisaProduto({super.key});
+  final String idVenda;
+  const DialogPesquisaProduto({super.key, required this.idVenda});
 
   @override
   State<DialogPesquisaProduto> createState() => _DialogPesquisaProdutoState();
@@ -17,8 +18,10 @@ class DialogPesquisaProduto extends StatefulWidget {
 class _DialogPesquisaProdutoState extends State<DialogPesquisaProduto> {
   Future<List<Map<String, dynamic>>>? _prodList;
   String? idProduto;
+  String? idItem;
   late Produto produto;
   late VendasOrdens item;
+  static final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -58,7 +61,6 @@ class _DialogPesquisaProdutoState extends State<DialogPesquisaProduto> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final TextEditingController pesquisa = TextEditingController();
     return Dialog(
       child: Container(
           constraints: BoxConstraints(
@@ -79,19 +81,6 @@ class _DialogPesquisaProdutoState extends State<DialogPesquisaProduto> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Flexible(
-                                child: TextFormComponent(
-                                  controller: pesquisa,
-                                  maxLines: 1,
-                                  label: 'Pesquise um produto',
-                                  onEnter: () {},
-                                ),
-                              ),
-                            ],
-                          ),
                           const SizedBox(
                             height: 15,
                           ),
@@ -110,56 +99,132 @@ class _DialogPesquisaProdutoState extends State<DialogPesquisaProduto> {
                                   lista: _prodList,
                                   dadosCelulas: (Map<String, dynamic> produto) {
                                     return [
-                                      DataCell(Text(produto['idProduto'])),
-                                      DataCell(Text(produto['nomeProduto'])),
-                                      DataCell(Text(produto['categoria'])),
-                                      DataCell(Text(produto['valor'])),
-                                      DataCell(Text(produto['quantidade'])),
+                                      DataCell(
+                                        SizedBox(
+                                          width: size.width / 100,
+                                          child: Text(produto['idProduto']),
+                                        ),
+                                      ),
+                                      DataCell(
+                                        SizedBox(
+                                          width: size.width / 10,
+                                          child: Text(
+                                            produto['nomeProduto'],
+                                            textScaler:
+                                                const TextScaler.linear(0.9),
+                                          ),
+                                        ),
+                                      ),
+                                      DataCell(
+                                        Center(
+                                          child: SizedBox(
+                                            width: size.width / 15,
+                                            child: Text(produto['categoria']),
+                                          ),
+                                        ),
+                                      ),
+                                      DataCell(
+                                        Center(
+                                          child: SizedBox(
+                                            child:
+                                                Text("R\$ ${produto['valor']}"),
+                                          ),
+                                        ),
+                                      ),
+                                      DataCell(
+                                        Center(
+                                          child: SizedBox(
+                                            child: Text(produto['quantidade']),
+                                          ),
+                                        ),
+                                      ),
                                     ];
                                   },
                                   dadosColuna: const [
                                     DataColumn(
-                                      label: Text(
-                                        'ID',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
+                                      label: Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'ID',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
                                     DataColumn(
-                                      label: Text(
-                                        'Nome',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
+                                      label: Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Nome',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
                                     DataColumn(
-                                      label: Text(
-                                        'Categoria',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
+                                      label: Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Categoria',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
                                     DataColumn(
-                                      label: Text(
-                                        'Valor',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
+                                      label: Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Valor',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
                                     DataColumn(
-                                      label: Text(
-                                        'Quantidade',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
+                                      label: Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Quantidade',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -192,30 +257,84 @@ class _DialogPesquisaProdutoState extends State<DialogPesquisaProduto> {
                           ),
                           Visibility(
                             visible: idProduto == null ? false : true,
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    produto.campoNomeProduto(5),
-                                    const Spacer(),
-                                    produto.campoCategoria(5),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    item.campoQuantidadeItem(2),
-                                    const Spacer(),
-                                    produto.campoValor(5),
-                                    const Spacer(),
-                                    item.campoValorItem(4),
-                                  ],
-                                ),
-                              ],
+                            child: SizedBox(
+                              height: size.height / 3,
+                              width: size.width,
+                              child: FormCadastro(
+                                formKey: formKey,
+                                components: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      produto.campoNomeProduto(5),
+                                      const Spacer(),
+                                      produto.campoCategoria(5),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      item.campoQuantidadeItem(3),
+                                      const Spacer(),
+                                      produto.campoValor(4),
+                                      const Spacer(),
+                                      item.campoValorItem(4),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      ElevatedButton(
+                                        style: buttonTheme,
+                                        onPressed: () {
+                                          Navigator.of(context).pop(false);
+                                        },
+                                        child: const Text('Cancelar'),
+                                      ),
+                                      const SizedBox(
+                                        width: 25,
+                                      ),
+                                      ElevatedButton(
+                                        style: buttonTheme,
+                                        onPressed: () {
+                                          if (idItem != null) {
+                                            if (formKey.currentState!
+                                                .validate()) {
+                                              // vendasOrdens.updateProd(widget.idVenda!);
+                                              Timer(
+                                                const Duration(seconds: 1),
+                                                () {
+                                                  Navigator.of(context)
+                                                      .pop(true);
+                                                },
+                                              );
+                                            }
+                                          } else if (formKey.currentState!
+                                              .validate()) {
+                                            item.criaItem(widget.idVenda, idProduto!);
+                                            Timer(
+                                              const Duration(seconds: 1),
+                                              () {
+                                                Navigator.of(context)
+                                                    .pop(true);
+                                              },
+                                            );
+                                          }
+                                        },
+                                        child: const Text('Salvar'),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],

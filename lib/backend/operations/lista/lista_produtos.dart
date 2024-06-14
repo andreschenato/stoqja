@@ -1,6 +1,6 @@
 import 'package:stoque_ja/database/db_config.dart';
 
-// Função que retorna uma lista de funcionários do banco
+// Função que retorna uma lista de produtos do banco
 
 Future<List<Map<String, dynamic>>> listaProdutos() async {
   List<Map<String, dynamic>> produtos= <Map<String, dynamic>>[];
