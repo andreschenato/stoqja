@@ -8,7 +8,9 @@ class MobileLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SizedBox(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -18,11 +20,16 @@ class MobileLogin extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 2.5,
+                  height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
-                  child: const Column(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      LoginWidget(),
+                      Image(
+                        height: size.height / 12,
+                        image: const AssetImage('assets/imagens/stoq.png'),
+                      ),
+                      const LoginWidget(),
                     ],
                   ),
                 ),

@@ -20,8 +20,31 @@ class _DateSelectorState extends State<DateSelector> {
   Widget build(BuildContext context) {
     return TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction,
+      // decoration: InputDecoration(
+      //   border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+      //   label: Text(widget.label),
+      // ),
       decoration: InputDecoration(
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0XFFFF6D04), width: 2),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0XFFFF6D04), width: 2),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0XFFFF0418), width: 2),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0XFFFF0418), width: 2),
+        ),
+        errorStyle: const TextStyle(color: Color(0XFFFF0418)),
+        floatingLabelStyle: const TextStyle(color: Color(0XFFFF6D04)),
         label: Text(widget.label),
       ),
       controller: widget.controller,

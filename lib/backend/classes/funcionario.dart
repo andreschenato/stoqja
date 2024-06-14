@@ -6,6 +6,7 @@ import 'package:stoque_ja/backend/classes/pessoa.dart';
 import 'package:stoque_ja/backend/operations/select/select_funcionario.dart';
 import 'package:stoque_ja/backend/operations/update/update_funcionario.dart';
 import 'package:stoque_ja/widgets/date_selector.dart';
+import 'package:stoque_ja/widgets/senha_form_field.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
 
 class Funcionario extends PessoaEmpresa {
@@ -43,6 +44,7 @@ class Funcionario extends PessoaEmpresa {
       child: TextFormComponent(
         txtInput: TextInputType.number,
         maxL: 14,
+        maxLines: 1,
         controller: cpfCnpj!,
         inputFormat: [
           FilteringTextInputFormatter.digitsOnly,
@@ -57,7 +59,7 @@ class Funcionario extends PessoaEmpresa {
   Widget campoSenha(int flex) {
     return Expanded(
       flex: flex,
-      child: TextFormComponent(
+      child: SenhaFormComponent(
         maxL: 25,
         controller: senha!,
         warning: 'Insira a senha',
@@ -71,6 +73,7 @@ class Funcionario extends PessoaEmpresa {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: cargo!,
         warning: 'Insira o cargo',
         label: 'Cargo',
@@ -83,6 +86,7 @@ class Funcionario extends PessoaEmpresa {
       flex: flex,
       child: TextFormComponent(
         maxL: 12,
+        maxLines: 1,
         controller: salario!,
         warning: 'Insira o salário',
         label: 'Salário',
@@ -94,7 +98,7 @@ class Funcionario extends PessoaEmpresa {
     return Expanded(
       flex: flex,
       child: SizedBox(
-        height: 70,
+        height: 80,
         child: DateSelector(
           controller: dataContrato!,
           label: "Data de contratação",

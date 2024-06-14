@@ -10,26 +10,28 @@ class TextFormComponent extends StatelessWidget {
   final String label;
   final String? hint;
   final int? maxL;
+  final int? maxLines;
   final TextInputType? txtInput;
-  final bool? isSenha;
   final void Function()? onEnter;
   final List<TextInputFormatter>? inputFormat;
-  const TextFormComponent(
-      {super.key,
-      required this.controller,
-      this.warning,
-      required this.label,
-      this.maxL,
-      this.txtInput,
-      this.inputFormat,
-      this.isSenha,
-      this.hint, this.onEnter});
+  const TextFormComponent({
+    super.key,
+    required this.controller,
+    this.warning,
+    required this.label,
+    this.maxL,
+    this.txtInput,
+    this.inputFormat,
+    this.hint,
+    this.onEnter,
+    this.maxLines,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      obscureText: isSenha.toString() != 'true' ? false : true,
+      maxLines: maxLines,
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
@@ -53,6 +55,7 @@ class TextFormComponent extends StatelessWidget {
         floatingLabelStyle: const TextStyle(color: Color(0XFFFF6D04)),
         hintText: hint,
         label: Text(label),
+        alignLabelWithHint: true
       ),
       controller: controller,
       maxLength: maxL,

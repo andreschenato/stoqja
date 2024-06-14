@@ -25,17 +25,7 @@ class _UserSelectState extends State<UserSelect> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    // Container(
-    //   constraints: const BoxConstraints(
-    //     maxHeight: 70,
-    //     maxWidth: 1000,
-    //     minHeight: 60,
-    //     minWidth: 200,
-    //   ),
-    //   height: double.infinity,
-    //   width: double.infinity,
-    //   child: 
+  Widget build(BuildContext context) { 
     return FutureBuilder<List<Map<String, dynamic>>>(
         future: _userList,
         builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {

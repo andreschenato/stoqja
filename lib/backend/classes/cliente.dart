@@ -32,6 +32,7 @@ class Cliente extends PessoaEmpresa {
         controller: nomeFantasia!,
         label: "Nome Fantasia",
         maxL: 200,
+        maxLines: 1,
         warning: cpfCnpj!.text.length == 18 ? "Insira o nome fantasia" : null,
       ),
     );

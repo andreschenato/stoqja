@@ -31,6 +31,7 @@ class Fornecedor extends PessoaEmpresa {
         controller: nomeFantasia!,
         label: "Nome Fantasia",
         maxL: 200,
+        maxLines: 1,
         warning: "Insira o nome fantasia",
       ),
     );

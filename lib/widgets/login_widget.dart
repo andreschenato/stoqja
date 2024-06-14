@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:stoque_ja/login/user_select.dart';
 import 'package:stoque_ja/backend/operations/valida_login.dart';
 import 'package:stoque_ja/rotas/routes.dart';
 import 'package:stoque_ja/theme/button_theme.dart';
 import 'package:stoque_ja/widgets/logged_user.dart';
-import 'package:stoque_ja/widgets/text_form_component.dart';
+import 'package:stoque_ja/widgets/senha_form_field.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -16,13 +17,12 @@ class LoginWidget extends StatefulWidget {
 
 class _LoginWidgetState extends State<LoginWidget> {
   String? idUsuario;
-  String? usuario;
-  String? cargo;
   final senha = TextEditingController();
 
   void redirect(bool isValid) {
     isValid
-        ? Navigator.pushNamed(context, Rota.menu, arguments: idUsuario.toString())
+        ? Navigator.pushNamed(context, Rota.menu,
+            arguments: idUsuario.toString())
         : ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Usuário ou senha inválidos'),
@@ -38,12 +38,15 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = MediaQuery.of(context).size.width < 650 ? true : false;
     return Container(
       constraints: const BoxConstraints(
         maxHeight: 300,
         maxWidth: 600,
       ),
-      width: MediaQuery.of(context).size.width / 2,
+      width: isMobile
+          ? MediaQuery.of(context).size.width / 1.2
+          : MediaQuery.of(context).size.width / 2,
       height: MediaQuery.of(context).size.height / 2,
       padding: const EdgeInsets.all(30.0),
       child: Column(
@@ -52,10 +55,11 @@ class _LoginWidgetState extends State<LoginWidget> {
             constraints: const BoxConstraints(
               maxWidth: 1000,
             ),
-            height: 50,
+            height: 55,
             child: UserSelect(onUserSelected: (selectedUser) {
               final login = context.read<LoggedUser>();
-              login.logUser(selectedUser!['nome'], selectedUser['cargo']);
+              login.logUser(selectedUser!['idFuncionario'],
+                  selectedUser['nome'], selectedUser['cargo']);
               setState(() {
                 idUsuario = selectedUser['idFuncionario'];
               });
@@ -64,11 +68,10 @@ class _LoginWidgetState extends State<LoginWidget> {
           const SizedBox(height: 25),
           Container(
             alignment: Alignment.center,
-            height: 50,
-            child: TextFormComponent(
+            height: 55,
+            child: SenhaFormComponent(
               controller: senha,
               label: 'Senha',
-              isSenha: true,
               onEnter: () async {
                 bool? isValid;
                 isValid = await validaLogin(idUsuario.toString(), senha.text);
@@ -93,9 +96,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               },
               child: Text(
                 'Login',
-                style: TextStyle(
-                  fontSize: 40,
-                ),
+                textScaler: isMobile ? const TextScaler.linear(2.5) : const TextScaler.linear(3),
               ),
             ),
           ),

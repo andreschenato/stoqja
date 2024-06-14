@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/menu_principal/menu_buttons.dart';
-import 'package:stoque_ja/widgets/desktop_appbar.dart';
+import 'package:stoque_ja/widgets/custom_app_bar.dart';
 
 // Construção da tela de menu para desktop
 
@@ -10,7 +10,7 @@ class DesktopMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: DesktopAppBar(),
+      appBar: CustomAppBar(),
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(

@@ -16,6 +16,7 @@ class CamposFormFuncionario extends StatefulWidget {
 
 class _CamposFormFuncionarioState extends State<CamposFormFuncionario> {
   late Funcionario funcionario;
+  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -46,118 +47,259 @@ class _CamposFormFuncionarioState extends State<CamposFormFuncionario> {
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
+    bool isMobile = MediaQuery.of(context).size.width < 650 ? true : false;
     String labelBotao;
     widget.idFuncionario != null
         ? labelBotao = 'Salvar'
         : labelBotao = 'Cadastrar';
     return FormCadastro(
       formKey: formKey,
-      components: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            funcionario.campoNome(5),
-            const Spacer(),
-            funcionario.campoCargo(3),
-            const Spacer(),
-            funcionario.campoSalario(2),
-          ],
-        ),
-        const SizedBox(
-          height: 25,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            funcionario.campoCpfCnpj(3),
-            const Spacer(),
-            funcionario.campoData(3),
-            const Spacer(),
-            funcionario.campoSenha(4),
-          ],
-        ),
-        const SizedBox(
-          height: 25,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            funcionario.campoEmail(6),
-            const Spacer(),
-            funcionario.campoTelefone(4)
-          ],
-        ),
-        const SizedBox(
-          height: 25,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            funcionario.campoCep(3),
-            const Spacer(),
-            funcionario.campoEndereco(5),
-            const Spacer(),
-            funcionario.campoNumEndereco(2),
-          ],
-        ),
-        const SizedBox(
-          height: 25,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            funcionario.campoBairro(2),
-            const Spacer(),
-            funcionario.campoIdCidade(4),
-            const Spacer(),
-            funcionario.campoComplemento(4),
-          ],
-        ),
-        const SizedBox(
-          height: 25,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            ElevatedButton(
-              style: buttonTheme,
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
-              child: const Text('Cancelar'),
-            ),
-            const SizedBox(
-              width: 25,
-            ),
-            ElevatedButton(
-              style: buttonTheme,
-              onPressed: () {
-                if (widget.idFuncionario != null) {
-                  if (formKey.currentState!.validate()) {
-                    funcionario.updateFunc(widget.idFuncionario!);
-                    Timer(
-                      const Duration(seconds: 1),
-                      () {
-                        Navigator.of(context).pop(true);
-                      },
-                    );
-                  }
-                } else if (formKey.currentState!.validate()) {
-                  funcionario.createFunc();
-                  Timer(
-                    const Duration(seconds: 1),
-                    () {
-                      Navigator.of(context).pop(true);
+      components: isMobile
+          ? [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoNome(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoCpfCnpj(5),
+                  const Spacer(),
+                  funcionario.campoCargo(5),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoSalario(5),
+                  const Spacer(),
+                  funcionario.campoData(5),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoSenha(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoEmail(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoTelefone(6),
+                  const Spacer(),
+                  funcionario.campoCep(4),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoEndereco(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoNumEndereco(4),
+                  const Spacer(),
+                  funcionario.campoBairro(6),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoIdCidade(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoComplemento(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    style: buttonTheme,
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
                     },
-                  );
-                }
-              },
-              child: Text(labelBotao),
-            ),
-          ],
-        ),
-      ],
+                    child: const Text('Cancelar'),
+                  ),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  ElevatedButton(
+                    style: buttonTheme,
+                    onPressed: () {
+                      if (widget.idFuncionario != null) {
+                        if (formKey.currentState!.validate()) {
+                          funcionario.updateFunc(widget.idFuncionario!);
+                          Timer(
+                            const Duration(seconds: 1),
+                            () {
+                              Navigator.of(context).pop(true);
+                            },
+                          );
+                        }
+                      } else if (formKey.currentState!.validate()) {
+                        funcionario.createFunc();
+                        Timer(
+                          const Duration(seconds: 1),
+                          () {
+                            Navigator.of(context).pop(true);
+                          },
+                        );
+                      }
+                    },
+                    child: Text(labelBotao),
+                  ),
+                ],
+              ),
+            ]
+          : [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoNome(5),
+                  const Spacer(),
+                  funcionario.campoCargo(3),
+                  const Spacer(),
+                  funcionario.campoSalario(2),
+                ],
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoCpfCnpj(3),
+                  const Spacer(),
+                  funcionario.campoData(3),
+                  const Spacer(),
+                  funcionario.campoSenha(4),
+                ],
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoEmail(6),
+                  const Spacer(),
+                  funcionario.campoTelefone(4)
+                ],
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoCep(3),
+                  const Spacer(),
+                  funcionario.campoEndereco(5),
+                  const Spacer(),
+                  funcionario.campoNumEndereco(2),
+                ],
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  funcionario.campoBairro(2),
+                  const Spacer(),
+                  funcionario.campoIdCidade(4),
+                  const Spacer(),
+                  funcionario.campoComplemento(4),
+                ],
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    style: buttonTheme,
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                    },
+                    child: const Text('Cancelar'),
+                  ),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  ElevatedButton(
+                    style: buttonTheme,
+                    onPressed: () {
+                      if (widget.idFuncionario != null) {
+                        if (formKey.currentState!.validate()) {
+                          funcionario.updateFunc(widget.idFuncionario!);
+                          Timer(
+                            const Duration(seconds: 1),
+                            () {
+                              Navigator.of(context).pop(true);
+                            },
+                          );
+                        }
+                      } else if (formKey.currentState!.validate()) {
+                        funcionario.createFunc();
+                        Timer(
+                          const Duration(seconds: 1),
+                          () {
+                            Navigator.of(context).pop(true);
+                          },
+                        );
+                      }
+                    },
+                    child: Text(labelBotao),
+                  ),
+                ],
+              ),
+            ],
     );
   }
 }

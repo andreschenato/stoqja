@@ -29,11 +29,16 @@ class Produto {
     this.quantidade = TextEditingController(text: quantidade);
   }
 
+  double getValorProduto() {
+    return double.tryParse(valor?.text ?? '0') ?? 0;
+  }
+
   Widget campoNomeProduto(int flex) {
     return Expanded(
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: nomeProduto!,
         warning: 'Insira o nome do produto',
         label: 'Nome do Produto',
@@ -46,9 +51,10 @@ class Produto {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: tipo!,
         warning: 'Insira o tipo',
-        label: 'tipo do Produto',
+        label: 'Tipo',
       ),
     );
   }
@@ -58,9 +64,10 @@ class Produto {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: observacao!,
         warning: 'Insira a obs',
-        label: 'observação',
+        label: 'Observação',
       ),
     );
   }
@@ -70,9 +77,10 @@ class Produto {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: categoria!,
         warning: 'Insira a categoria',
-        label: 'categoria do Produto',
+        label: 'Categoria',
       ),
     );
   }
@@ -82,9 +90,10 @@ class Produto {
       flex: flex,
       child: TextFormComponent(
         maxL: 7,
+        maxLines: 1,
         controller: valor!,
         warning: 'Insira o valor do produto',
-        label: 'Valor do Produto',
+        label: 'Valor',
       ),
     );
   }
@@ -94,6 +103,7 @@ class Produto {
       flex: flex,
       child: TextFormComponent(
         maxL: 200,
+        maxLines: 1,
         controller: quantidade!,
         inputFormat: [
           FilteringTextInputFormatter.digitsOnly,
@@ -104,7 +114,7 @@ class Produto {
     );
   }
 
-  void selectProd(String idProduto) async {
+  Future<void> selectProd(String idProduto) async {
     Map<String, dynamic> produto= await selectProduto(idProduto);
     nomeProduto?.text = produto['nomeProduto'];
     tipo?.text = produto['tipo'];
