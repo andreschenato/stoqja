@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Cidades` (
   PRIMARY KEY (`idCidade`),
   UNIQUE INDEX `IDCidade_UNIQUE` (`idCidade` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 5571
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -50,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Funcionario` (
     FOREIGN KEY (`FK_idCidade`)
     REFERENCES `stoqja`.`Cidades` (`idCidade`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -79,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Pessoa` (
     FOREIGN KEY (`FK_idCidade`)
     REFERENCES `stoqja`.`Cidades` (`idCidade`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -93,6 +96,8 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Carrinho` (
   `FK_idPessoa` INT NOT NULL,
   `status` VARCHAR(40) NOT NULL,
   `codigo` INT NOT NULL,
+  `descricao` VARCHAR(4000) NULL DEFAULT NULL,
+  `laudo` VARCHAR(4000) NULL DEFAULT NULL,
   PRIMARY KEY (`idCarrinho`),
   UNIQUE INDEX `idCarrinho_UNIQUE` (`idCarrinho` ASC) VISIBLE,
   UNIQUE INDEX `codigo_UNIQUE` (`codigo` ASC) VISIBLE,
@@ -100,11 +105,14 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Carrinho` (
   INDEX `fk_Carrinho_Pessoa1_idx` (`FK_idPessoa` ASC) VISIBLE,
   CONSTRAINT `FK_Carrinho_Funcionario`
     FOREIGN KEY (`FK_idFuncionario`)
-    REFERENCES `stoqja`.`Funcionario` (`idFuncionario`),
+    REFERENCES `stoqja`.`Funcionario` (`idFuncionario`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Carrinho_Pessoa1`
     FOREIGN KEY (`FK_idPessoa`)
     REFERENCES `stoqja`.`Pessoa` (`idPessoa`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 96
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -123,6 +131,7 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Produto` (
   PRIMARY KEY (`idProduto`),
   UNIQUE INDEX `idProduto_UNIQUE` (`idProduto` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -141,11 +150,14 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`ItensVenda` (
   INDEX `FK_ItensVenda_Produto_idx` (`FK_idProduto` ASC) VISIBLE,
   CONSTRAINT `FK_ItensVenda_Carrinho`
     FOREIGN KEY (`FK_idCarrinho`)
-    REFERENCES `stoqja`.`Carrinho` (`idCarrinho`),
+    REFERENCES `stoqja`.`Carrinho` (`idCarrinho`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `FK_ItensVenda_Produto`
     FOREIGN KEY (`FK_idProduto`)
     REFERENCES `stoqja`.`Produto` (`idProduto`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 25
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -164,27 +176,7 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`MovEstoque` (
     FOREIGN KEY (`FK_idProduto`)
     REFERENCES `stoqja`.`Produto` (`idProduto`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `stoqja`.`OrdemServico`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `stoqja`.`OrdemServico` (
-  `idOrdem` INT NOT NULL AUTO_INCREMENT,
-  `FK_idCarrinho` INT NOT NULL,
-  `laudo` VARCHAR(4000) NULL DEFAULT NULL,
-  `descricao` VARCHAR(4000) NULL DEFAULT NULL,
-  PRIMARY KEY (`idOrdem`),
-  UNIQUE INDEX `idOrdem_UNIQUE` (`idOrdem` ASC) VISIBLE,
-  INDEX `FK_OrdemServico_Carrinho_idx` (`FK_idCarrinho` ASC) VISIBLE,
-  CONSTRAINT `FK_OrdemServico_Carrinho`
-    FOREIGN KEY (`FK_idCarrinho`)
-    REFERENCES `stoqja`.`Carrinho` (`idCarrinho`)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT)
-ENGINE = InnoDB
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
