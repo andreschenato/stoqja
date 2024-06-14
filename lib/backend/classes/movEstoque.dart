@@ -20,6 +20,7 @@ class MovEstoque {
       flex: flex,
       child: TextFormComponent(
         maxL: 2000,
+        maxLines: 4,
         controller: descricao!,
         warning: 'Insira sua descrição',
         label: 'Descrição',
@@ -67,7 +68,7 @@ class MovEstoque {
       tipo!,
     );
   }
- 
+
   void createMovEstoque() {
     cadastroMovEstoque(
       descricao!.text,

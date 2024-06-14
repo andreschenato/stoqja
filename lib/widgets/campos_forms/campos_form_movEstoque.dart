@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:stoque_ja/backend/classes/movEstoque.dart';
+import 'package:stoque_ja/theme/button_theme.dart';
 import 'package:stoque_ja/widgets/form_cadastro.dart';
 
 // Componentes do formulário da MovEstoque
@@ -15,6 +16,7 @@ class CamposFormMovEstoque extends StatefulWidget {
 
 class _CamposFormMovEstoqueState extends State<CamposFormMovEstoque> {
   late MovEstoque movEstoque;
+  static final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -33,66 +35,145 @@ class _CamposFormMovEstoqueState extends State<CamposFormMovEstoque> {
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
+    bool isMobile = MediaQuery.of(context).size.width < 650 ? true : false;
     String labelBotao;
     widget.idMovEstoque != null
         ? labelBotao = 'Salvar'
         : labelBotao = 'Cadastrar';
     return FormCadastro(
       formKey: formKey,
-      components: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            movEstoque.campoTipo(70),
-            const Spacer(flex: 20),
-            movEstoque.campoDescricao(150),
-            const Spacer(flex: 20),
-            movEstoque.campoProduto(70)
-          ],
-        ),
-        const SizedBox(
-          height: 25,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
-              child: const Text('Cancelar'),
-            ),
-            const SizedBox(
-              width: 25,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (widget.idMovEstoque != null) {
-                  if (formKey.currentState!.validate()) {
-                    movEstoque.updateMovEstoque(widget.idMovEstoque!);
-                    Timer(
-                      const Duration(seconds: 1),
-                      () {
-                        Navigator.of(context).pop(true);
-                      },
-                    );
-                  }
-                } else if (formKey.currentState!.validate()) {
-                  movEstoque.createMovEstoque();
-                  Timer(
-                    const Duration(seconds: 1),
-                    () {
-                      Navigator.of(context).pop(true);
+      components: isMobile
+          ? [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  movEstoque.campoTipo(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  movEstoque.campoDescricao(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  movEstoque.campoProduto(10),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    style: buttonTheme,
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
                     },
-                  );
-                }
-              },
-              child: Text(labelBotao),
-            ),
-          ],
-        ),
-      ],
+                    child: const Text('Cancelar'),
+                  ),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  ElevatedButton(
+                    style: buttonTheme,
+                    onPressed: () {
+                      if (widget.idMovEstoque != null) {
+                        if (formKey.currentState!.validate()) {
+                          movEstoque.updateMovEstoque(widget.idMovEstoque!);
+                          Timer(
+                            const Duration(seconds: 1),
+                            () {
+                              Navigator.of(context).pop(true);
+                            },
+                          );
+                        }
+                      } else if (formKey.currentState!.validate()) {
+                        movEstoque.createMovEstoque();
+                        Timer(
+                          const Duration(seconds: 1),
+                          () {
+                            Navigator.of(context).pop(true);
+                          },
+                        );
+                      }
+                    },
+                    child: Text(labelBotao),
+                  ),
+                ],
+              ),
+            ]
+          : [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  movEstoque.campoTipo(10),
+                  const Spacer(),
+                  movEstoque.campoProduto(10)
+                ],
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  movEstoque.campoDescricao(10),
+                ],
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    style: buttonTheme,
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                    },
+                    child: const Text('Cancelar'),
+                  ),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  ElevatedButton(
+                    style: buttonTheme,
+                    onPressed: () {
+                      if (widget.idMovEstoque != null) {
+                        if (formKey.currentState!.validate()) {
+                          movEstoque.updateMovEstoque(widget.idMovEstoque!);
+                          Timer(
+                            const Duration(seconds: 1),
+                            () {
+                              Navigator.of(context).pop(true);
+                            },
+                          );
+                        }
+                      } else if (formKey.currentState!.validate()) {
+                        movEstoque.createMovEstoque();
+                        Timer(
+                          const Duration(seconds: 1),
+                          () {
+                            Navigator.of(context).pop(true);
+                          },
+                        );
+                      }
+                    },
+                    child: Text(labelBotao),
+                  ),
+                ],
+              ),
+            ],
     );
   }
 }

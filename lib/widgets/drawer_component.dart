@@ -12,7 +12,6 @@ class DrawerComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isAdm;
     final String selectedIndex = tela;
-    final String usuario = ModalRoute.of(context)?.settings.arguments as String;
     return Drawer(
       child: Consumer<LoggedUser>(
         builder: (context, value, child) {
@@ -73,7 +72,10 @@ class DrawerComponent extends StatelessWidget {
                 ),
                 selected: selectedIndex == 'Menu',
                 onTap: () {
-                  Navigator.pushNamed(context, Rota.menu, arguments: usuario);
+                  Navigator.pushNamed(
+                    context,
+                    Rota.menu,
+                  );
                 },
               ),
               ListTile(
@@ -88,8 +90,10 @@ class DrawerComponent extends StatelessWidget {
                 ),
                 selected: selectedIndex == 'Produtos',
                 onTap: () {
-                  Navigator.pushNamed(context, Rota.produto,
-                      arguments: usuario);
+                  Navigator.pushNamed(
+                    context,
+                    Rota.produto,
+                  );
                 },
               ),
               if (isAdm)
@@ -105,8 +109,10 @@ class DrawerComponent extends StatelessWidget {
                   ),
                   selected: selectedIndex == 'Funcionarios',
                   onTap: () {
-                    Navigator.pushNamed(context, Rota.funcionario,
-                        arguments: usuario);
+                    Navigator.pushNamed(
+                      context,
+                      Rota.funcionario,
+                    );
                   },
                 ),
               ListTile(
@@ -121,8 +127,10 @@ class DrawerComponent extends StatelessWidget {
                 ),
                 selected: selectedIndex == 'MovEstoque',
                 onTap: () {
-                  Navigator.pushNamed(context, Rota.estoque,
-                      arguments: usuario);
+                  Navigator.pushNamed(
+                    context,
+                    Rota.estoque,
+                  );
                 },
               ),
               ListTile(
@@ -137,8 +145,10 @@ class DrawerComponent extends StatelessWidget {
                 ),
                 selected: selectedIndex == 'Clientes',
                 onTap: () {
-                  Navigator.pushNamed(context, Rota.cliente,
-                      arguments: usuario);
+                  Navigator.pushNamed(
+                    context,
+                    Rota.cliente,
+                  );
                 },
               ),
               ListTile(
@@ -153,7 +163,10 @@ class DrawerComponent extends StatelessWidget {
                 ),
                 selected: selectedIndex == 'VendasOrdens',
                 onTap: () {
-                  Navigator.pushNamed(context, Rota.venda, arguments: usuario);
+                  Navigator.pushNamed(
+                    context,
+                    Rota.venda,
+                  );
                 },
               ),
               if (isAdm)
@@ -169,8 +182,10 @@ class DrawerComponent extends StatelessWidget {
                   ),
                   selected: selectedIndex == 'Fornecedores',
                   onTap: () {
-                    Navigator.pushNamed(context, Rota.fornecedor,
-                        arguments: usuario);
+                    Navigator.pushNamed(
+                      context,
+                      Rota.fornecedor,
+                    );
                   },
                 ),
               ListTile(
@@ -185,7 +200,10 @@ class DrawerComponent extends StatelessWidget {
                 ),
                 selected: selectedIndex == 'Login',
                 onTap: () {
-                  Navigator.pushNamed(context, Rota.login, arguments: usuario);
+                  Navigator.pushNamed(
+                    context,
+                    Rota.login,
+                  );
                 },
               ),
             ],

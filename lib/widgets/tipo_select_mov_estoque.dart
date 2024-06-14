@@ -9,8 +9,6 @@ class TipoSelector extends StatefulWidget {
   State<TipoSelector> createState() => _TipoSelectorState();
 }
 
-String selectedType = 'Roubado';
-
 final List<String> items = [
   "Roubado",
   "Quebrado",
@@ -19,16 +17,24 @@ final List<String> items = [
 ];
 
 class _TipoSelectorState extends State<TipoSelector> {
+  String? selectedType;
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField2<String>(
+      validator: (String? value) {
+        if (value == null) {
+          return "Insira o tipo";
+        }
+        return null;
+      },
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       value: selectedType,
       onChanged: widget.onTipoChanged,
       dropdownStyleData: const DropdownStyleData(
         maxHeight: 150,
       ),
       decoration: InputDecoration(
-        labelText: 'Status',
+        labelText: 'Tipo',
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
         ),

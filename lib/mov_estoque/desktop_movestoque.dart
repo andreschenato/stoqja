@@ -31,18 +31,6 @@ class _DesktopMovEstoqueState extends State<DesktopMovEstoque> {
     _loadprodMovEstoque();
   }
 
-  /* void _loadProdList() {
-    setState(() {
-      _prodList = listaProdutos();
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _loadProdList();
-  }
-*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
