@@ -32,6 +32,17 @@ O stoqJá é um software de gestão de estoque e vendas multiplataforma de códi
 
 Além disso, por possuir a licença MIT, você pode fazer sua própria versão do software, seja ela pública ou privada. 
 
+## Screenshots do app
+
+| Tela de login                              | Tela de menu                      |
+|:------------------------------------------:|:---------------------------------:|
+| ![](assets/docs/Login.png)                 | ![](assets/docs/Menu.png)         |
+| Cadastro de clientes                       | Cadastro de vendas                |
+| ![](assets/docs/CadastroCliente.png)       | ![](assets/docs/Vendas.png)       |
+| Tela de Produtos                           | Tela de Movimentação de estoque   |
+| ![](assets/docs/Produtos.png)              | ![](assets/docs/Estoque.png)       |
+
+
 ## Requisitos
 Atualmente, o stoqJá não possui uma versão instalável, portanto você precisa fazer um clone do repositório e fazer a build por conta própria. Para fazer isso com sucesso, você precisa atender aos seguintes requisitos:
 
