@@ -34,13 +34,13 @@ Além disso, por possuir a licença MIT, você pode fazer sua própria versão d
 
 ## Screenshots do app
 
-| Tela de login                              | Tela de menu                      |
-|:---------------------------------:         |:---------------------------------:|
-| ![](assets/docs/Login.png)                 | ![](assets/docs/Menu.png)         |
-| Cadastro de clientes                       | Cadastro de vendas                |
-| ![](assets/docs/CadastroCliente.png)       | ![](assets/docs/Vendas.png)       |
-| Tela de Produtos                           | Tela de Movimentação de estoque   |
-| ![](assets/docs/Produtos.png)              | ![](assets/docs/Estoque.png)      |
+| Tela de login                           | Tela de menu                            |
+|:---------------------------------------:|:---------------------------------------:|
+| ![](assets/docs/Login.png)              | ![](assets/docs/Menu.png)               |
+| Cadastro de clientes                    | Cadastro de vendas                      |
+| ![](assets/docs/CadastroCliente.png)    | ![](assets/docs/Vendas.png)             |
+| Tela de Produtos                        | Tela de Movimentação de estoque         |
+| ![](assets/docs/Produtos.png)           | ![](assets/docs/Estoque.png)            |
 
 
 ## Requisitos
