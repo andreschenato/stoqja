@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/backend/classes/movEstoque.dart';
+import 'package:stoque_ja/backend/classes/mov_estoque.dart';
 import 'package:stoque_ja/theme/button_theme.dart';
 import 'package:stoque_ja/widgets/form_cadastro.dart';
 

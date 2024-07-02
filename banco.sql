@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Cidades` (
   PRIMARY KEY (`idCidade`),
   UNIQUE INDEX `IDCidade_UNIQUE` (`idCidade` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 5571
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -51,7 +50,6 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Funcionario` (
     FOREIGN KEY (`FK_idCidade`)
     REFERENCES `stoqja`.`Cidades` (`idCidade`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -81,7 +79,6 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Pessoa` (
     FOREIGN KEY (`FK_idCidade`)
     REFERENCES `stoqja`.`Cidades` (`idCidade`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -112,7 +109,6 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Carrinho` (
     FOREIGN KEY (`FK_idPessoa`)
     REFERENCES `stoqja`.`Pessoa` (`idPessoa`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 96
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -131,7 +127,6 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`Produto` (
   PRIMARY KEY (`idProduto`),
   UNIQUE INDEX `idProduto_UNIQUE` (`idProduto` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -157,7 +152,6 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`ItensVenda` (
     FOREIGN KEY (`FK_idProduto`)
     REFERENCES `stoqja`.`Produto` (`idProduto`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 25
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -176,7 +170,6 @@ CREATE TABLE IF NOT EXISTS `stoqja`.`MovEstoque` (
     FOREIGN KEY (`FK_idProduto`)
     REFERENCES `stoqja`.`Produto` (`idProduto`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

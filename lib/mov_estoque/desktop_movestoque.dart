@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/backend/operations/delete/delete_movEstoque.dart';
-import 'package:stoque_ja/backend/operations/lista/lista_movEstoque.dart';
+import 'package:stoque_ja/backend/operations/delete/delete_mov_estoque.dart';
+import 'package:stoque_ja/backend/operations/lista/lista_mov_estoque.dart';
 import 'package:stoque_ja/widgets/custom_app_bar.dart';
 import 'package:stoque_ja/widgets/dialog_cadastro.dart';
 import 'package:stoque_ja/widgets/function_buttons.dart';

@@ -37,6 +37,10 @@ class _CamposFormVendasState extends State<CamposFormVendas> {
     setState(() {
       vendasOrdens.valorTotal = venda['valorTotal'];
     });
+    String valor = await venda['valorTotal'];
+    if(double.parse(valor) == 0) {
+      vendasOrdens.valorTotal = '0.00';
+    }
   }
 
   @override
@@ -454,7 +458,10 @@ class _CamposFormVendasState extends State<CamposFormVendas> {
                     Expanded(
                       flex: 10,
                       child: Container(
-                        height: MediaQuery.of(context).size.height / 3,
+                        constraints: const BoxConstraints(
+                          minHeight: 350,
+                          maxHeight: 500,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
@@ -521,8 +528,7 @@ class _CamposFormVendasState extends State<CamposFormVendas> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SizedBox(
-                                    height: MediaQuery.of(context).size.height /
-                                        4.8,
+                                    height: 370,
                                     width: MediaQuery.of(context).size.width /
                                         1.31,
                                     child: ListComponent(
@@ -650,8 +656,11 @@ class _CamposFormVendasState extends State<CamposFormVendas> {
                               color: Colors.black,
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
+                            child: SizedBox(
+                              height: 30,
                               child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   const Text(
@@ -665,7 +674,9 @@ class _CamposFormVendasState extends State<CamposFormVendas> {
                                   ),
                                 ],
                               ),
-                            )
+                            ),
+                                                        ),
+                            
                           ],
                         ),
                       ),

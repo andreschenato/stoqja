@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stoque_ja/backend/operations/create/cadastro_movEstoque.dart';
-import 'package:stoque_ja/backend/operations/select/select_movEstoque.dart';
-import 'package:stoque_ja/backend/operations/update/update_movEstoque.dart';
+import 'package:stoque_ja/backend/operations/create/cadastro_mov_estoque.dart';
+import 'package:stoque_ja/backend/operations/select/select_mov_estoque.dart';
+import 'package:stoque_ja/backend/operations/update/update_mov_estoque.dart';
 import 'package:stoque_ja/widgets/text_form_component.dart';
 import 'package:stoque_ja/widgets/produto_select.dart';
 import 'package:stoque_ja/widgets/tipo_select_mov_estoque.dart';

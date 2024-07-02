@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:stoque_ja/login/user_select.dart';
 import 'package:stoque_ja/backend/operations/valida_login.dart';
